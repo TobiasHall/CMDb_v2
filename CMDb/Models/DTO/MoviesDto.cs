@@ -11,7 +11,7 @@ namespace CMDb.Models.DTO
         public int Year { get; set; }
         public string Plot { get; set; }
         public string Poster { get; set; }
-        public IEnumerable<RatingsDto> Rating { get; set; }
+        public IEnumerable<RatingsDto> Ratings { get; set; }
 
     }
 }

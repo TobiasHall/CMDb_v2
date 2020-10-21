@@ -6,13 +6,20 @@
                 <div class="row hero-area-slide">
                     <div class="col-lg-6 col-md-5">
                         <div class="hero-area-content">
-                            <img src="@Model.Poster" alt="about" />
+                            <img src="@Model.Poster" alt="about"/>
+                            <h2 class="news-date">Top 3 rated <br />on CMDb</h2>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-7">
                         <div class="hero-area-content pr-50">
                             <h2>@Model.Title</h2>
                             <div class="review">
+                                @foreach (var country in Model.Ratings)
+                                {
+                                    <p>@Html.DisplayFor(item => country.Source)</p>
+                                    <p>@Html.DisplayFor(item => country.Value)</p>
+                                    <br />
+                                }
                                 <div class="author-review">
                                     <i class="icofont icofont-star"></i>
                                     <i class="icofont icofont-star"></i>
@@ -20,7 +27,7 @@
                                     <i class="icofont icofont-star"></i>
                                     <i class="icofont icofont-star"></i>
                                 </div>
-                                <h4>180k voters</h4>                               
+                                <h4>180k voters</h4>
                             </div>
                             <p>@Model.Plot</p>
 
@@ -35,12 +42,13 @@
                     <div class="col-lg-6 col-md-5">
                         <div class="hero-area-content">
                             <img src="/img/slide1.png" alt="about" />
+                            <h2 class="news-date">Top 3 rated <br />on CMDb</h2>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-7">
                         <div class="hero-area-content pr-50">
                             <h2>Last Avatar</h2>
-                            <div class="review">
+                            <div class="review">                                
                                 <div class="author-review">
                                     <i class="icofont icofont-star"></i>
                                     <i class="icofont icofont-star"></i>
@@ -62,6 +70,7 @@
                     <div class="col-lg-6 col-md-5">
                         <div class="hero-area-content">
                             <img src="/img/slide3.png" alt="about" />
+                            <h2 class="news-date">Top 3 rated <br />on CMDb</h2>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-7">
