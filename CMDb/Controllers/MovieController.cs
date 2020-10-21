@@ -2,15 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CMDb.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CMDb.Controllers
 {
     public class MovieController : Controller
     {
-        public IActionResult Index()
+        private ICmdb cmdb;
+
+        public MovieController(ICmdb cmdbRepo)
         {
-            return View();
+            this.cmdb = cmdbRepo;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var model = await cmdb.GetToplist();
+
+            return View(model);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿    <!-- breadcrumb area start -->
+﻿@model IEnumerable<CmdbDto >
+    <!-- breadcrumb area start -->
     <section class="breadcrumb-area">
         <div class="container">
             <div class="row">
@@ -14,5 +15,11 @@
     <section class="portfolio-area pt-60">
         <div class="container">
 
+            @foreach (var movie in Model)
+            {
+                <p>@Html.DisplayFor(item => movie.ImdbId)</p>
+                <p>@Html.DisplayFor(item => movie.NumberOfLikes)</p>
+                <br />
+            }
         </div>
     </section><!-- portfolio section end -->    

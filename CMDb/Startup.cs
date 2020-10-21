@@ -21,6 +21,9 @@ namespace CMDb
             services.AddControllersWithViews();
             services.AddScoped<IOpenMovieDatabase, OpenMovieDatabaseRepo>();
             //services.AddScoped<IOpenMovieDatabase, MockOpenMovieDatabaseRepo>();
+
+            services.AddScoped<ICmdb, CmdbRepo>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
