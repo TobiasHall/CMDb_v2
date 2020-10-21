@@ -18,7 +18,7 @@
             @foreach (var movie in Model)
             {
                 <p>@Html.DisplayFor(item => movie.ImdbId)</p>
-                <p>@Html.DisplayFor(item => movie.NumberOfLikes)</p>
+                <p>Likes:@Html.DisplayFor(item => movie.NumberOfLikes) Dislikes: @Html.DisplayFor(item => movie.NumberOfDislikes) </p>
                 <br />
             }
         </div>

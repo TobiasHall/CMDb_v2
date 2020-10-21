@@ -19,7 +19,7 @@ namespace CMDb.Controllers
         public async Task<IActionResult> Index()
         {
             var model = await cmdb.GetToplist();
-
+            
             return View(model);
         }
     }
