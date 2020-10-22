@@ -1,5 +1,6 @@
 ﻿using CMDb.Data;
 using CMDb.Models.DTO;
+using CMDb.Models.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Newtonsoft.Json;
 using System;
@@ -17,12 +18,34 @@ namespace CMDb.Mock
         {
             basePath = $"{webHostEnvironment.ContentRootPath}\\Mock\\MockData\\";
         }
-        public async Task<MoviesDto> GetMovie()
+
+        //public async Task<MovieRatingsViewModel> GetMovieRatingsViewModel(string movie=null)
+        //{
+        //    //Hämta filmer från CMDB
+        //    //Hämta infor från omdb
+        //    //skicka in dessa in i MovieRatingVM
+
+        //    movie = movie ?? "ett defaultvärde";
+        //    string topList = "Toplist.js";
+        //    var cmdbMovies = GetTestData<CmdbDto>(topList);
+        //    var omdbMovies = GetTestData<CmdbDto>("Movies.json");
+        //    await Task.Delay(0);
+        //    MovieRatingsViewModel 
+        //    return result;
+        //}
+
+
+        public async Task<MoviesDto> GetMovie(string testFile=null)
         {
-            string testFile = "joker.js";
+            testFile = testFile ?? "joker.js";
             var result = GetTestData<MoviesDto>(testFile);
             await Task.Delay(0);
             return result;
+        }       
+
+        public Task<IEnumerable<MoviesDto>> GetMovies(IEnumerable<CmdbDto> toplist)
+        {
+            throw new NotImplementedException();
         }
 
 

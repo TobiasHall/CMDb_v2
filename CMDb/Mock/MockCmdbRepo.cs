@@ -25,7 +25,7 @@ namespace CMDb.Mock
             var result = JsonConvert.DeserializeObject<T>(data);
             return result;
         }
-       public async Task<IEnumerable<CmdbDto>> GetToplist()
+       public async Task<IEnumerable<CmdbDto>> GetTopThreeMoviesByRating()
         {
             string testFile = "Toplist.json";
             var result = GetTestData<IEnumerable<CmdbDto>>(testFile);

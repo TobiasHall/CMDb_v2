@@ -8,7 +8,7 @@ namespace CMDb.Models.DTO
     public class MoviesDto
     {
         public string Title { get; set; }
-        public int Year { get; set; }
+        public string Year { get; set; }
         public string Plot { get; set; }
         public string Poster { get; set; }
         public IEnumerable<RatingsDto> Ratings { get; set; }

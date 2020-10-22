@@ -8,7 +8,7 @@ namespace CMDb.Data
 {
     public interface IOpenMovieDatabase
     {
-        Task<MoviesDto> GetMovie();
-        
+        Task<MoviesDto> GetMovie(string imdbId);
+        Task<IEnumerable<MoviesDto>> GetMovies(IEnumerable<CmdbDto> toplist);
     }
 }

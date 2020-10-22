@@ -8,6 +8,6 @@ namespace CMDb.Data
 {
     public interface ICmdb
     {
-        Task<IEnumerable<CmdbDto>> GetToplist();
+        Task<IEnumerable<CmdbDto>> GetTopThreeMoviesByRating();
     }
 }

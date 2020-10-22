@@ -23,12 +23,13 @@ namespace CMDb.Data
 
             //this.configuration = configuration;
         }
-        public async Task<MoviesDto> GetMovie()
+        public async Task<MoviesDto> GetMovie(string imdbId)
         {
-            //TODO: Fixa något
+            
             using (HttpClient client = new HttpClient())
             {
-                string endpoint = $"{baseUrl}?t=joker{key}";
+                string movieId = $"?i={imdbId}";
+                string endpoint = $"{baseUrl}{key}{movieId}";
                 var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
                 response.EnsureSuccessStatusCode();
                 var data = await response.Content.ReadAsStringAsync();
@@ -37,7 +38,28 @@ namespace CMDb.Data
 
                 return result;
             }
+        }
+        public async Task<IEnumerable<MoviesDto>> GetMovies(IEnumerable<CmdbDto> cmdbDtoMovies)
+        {
 
-        }        
+            using (HttpClient client = new HttpClient())
+            {
+                List<MoviesDto> movies = new List<MoviesDto>();
+                foreach (var movie in cmdbDtoMovies)
+                {
+                    string movieId = $"?i={movie.ImdbId}";
+                    string endpoint = $"{baseUrl}{movieId}{key}";
+                    var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
+                    response.EnsureSuccessStatusCode();
+                    var data = await response.Content.ReadAsStringAsync();
+                    var result = JsonConvert.DeserializeObject<MoviesDto>(data);
+                    movies.Add(result);
+
+                }
+
+
+                return movies;
+            }
+        }
     }
 }

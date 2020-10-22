@@ -18,7 +18,7 @@ namespace CMDb.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var model = await cmdb.GetToplist();
+            var model = await cmdb.GetTopThreeMoviesByRating();
             
             return View(model);
         }

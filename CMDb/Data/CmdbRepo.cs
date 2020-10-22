@@ -12,19 +12,22 @@ namespace CMDb.Data
     public class CmdbRepo : ICmdb
     {
         private string baseUrl;
-        
+        private string rating;
+
+
         public CmdbRepo(IConfiguration configuration)
         {
             baseUrl = configuration.GetValue<string>("CMDbApi:BaseUrl");
+            rating = configuration.GetValue<string>("CMDbApi:ToplistByRating");
 
             //this.configuration = configuration;
         }
-        public async Task<IEnumerable<CmdbDto>> GetToplist()
+        public async Task<IEnumerable<CmdbDto>> GetTopThreeMoviesByRating()
         {
             //TODO: Fixa något
             using (HttpClient client = new HttpClient())
             {
-                string endpoint = $"{baseUrl}toplist";
+                string endpoint = $"{baseUrl}{rating}";
                 var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
                 response.EnsureSuccessStatusCode();
                 var data = await response.Content.ReadAsStringAsync();

@@ -22,7 +22,8 @@ namespace CMDb
             services.AddScoped<IOpenMovieDatabase, OpenMovieDatabaseRepo>();
             //services.AddScoped<IOpenMovieDatabase, MockOpenMovieDatabaseRepo>();
 
-            services.AddScoped<ICmdb, MockCmdbRepo>();
+            services.AddScoped<ICmdb, CmdbRepo>();
+            //services.AddScoped<ICmdb, MockCmdbRepo>();
 
         }
 
