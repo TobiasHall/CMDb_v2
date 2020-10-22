@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace CMDb.Mock
 {
-    public class MockCmdbRepo : ICmdb
+    public class CmdbMockRepo : ICmdb
     {
         string basePath;
-        public MockCmdbRepo(IWebHostEnvironment webHostEnvironment)
+        public CmdbMockRepo(IWebHostEnvironment webHostEnvironment)
         {
             basePath = $"{webHostEnvironment.ContentRootPath}\\Mock\\MockData\\";
         }
@@ -25,10 +25,10 @@ namespace CMDb.Mock
             var result = JsonConvert.DeserializeObject<T>(data);
             return result;
         }
-       public async Task<IEnumerable<CmdbDto>> GetTopThreeMoviesByRating()
+       public async Task<IEnumerable<CmdbMovieDto>> GetTopThreeMoviesByRating()
         {
-            string testFile = "Toplist.json";
-            var result = GetTestData<IEnumerable<CmdbDto>>(testFile);
+            string testFile = "toplist.js";
+            var result = GetTestData<IEnumerable<CmdbMovieDto>>(testFile);
             await Task.Delay(0);
             return result;
         }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CMDb.Models.ViewModels
 {
-    public class MovieRatingsViewModel
+    public class MovieViewModel
     {
         public string ImdbId { get; set; }
 
@@ -34,7 +34,7 @@ namespace CMDb.Models.ViewModels
                 return null;
             }
         }
-        public MovieRatingsViewModel(CmdbDto cmdbMovies, MoviesDto moviesDto)
+        public MovieViewModel(CmdbMovieDto cmdbMovies, OmdbMovieDto moviesDto)
         {
             ImdbId = cmdbMovies.ImdbId;
         }

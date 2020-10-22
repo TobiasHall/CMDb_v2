@@ -19,11 +19,12 @@ namespace CMDb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddScoped<IOpenMovieDatabase, OpenMovieDatabaseRepo>();
-            //services.AddScoped<IOpenMovieDatabase, MockOpenMovieDatabaseRepo>();
+
+            services.AddScoped<IOmdb, OmdbRepo>();
+            //services.AddScoped<IOpenMovieDatabase, OmdbMockRepo>();
 
             services.AddScoped<ICmdb, CmdbRepo>();
-            //services.AddScoped<ICmdb, MockCmdbRepo>();
+            //services.AddScoped<ICmdb, CmdbMockRepo>();
 
         }
 

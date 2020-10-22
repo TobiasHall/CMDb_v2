@@ -12,10 +12,10 @@ namespace CMDb.Controllers
 
     public class HomeController : Controller
     {
-        private IOpenMovieDatabase openMovieDatabase;
+        private IOmdb openMovieDatabase;
         private ICmdb cmdb;
 
-        public HomeController(IOpenMovieDatabase openMovieDatabase, ICmdb cmdb)
+        public HomeController(IOmdb openMovieDatabase, ICmdb cmdb)
         {
             this.openMovieDatabase = openMovieDatabase;
             this.cmdb = cmdb;

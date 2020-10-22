@@ -22,7 +22,7 @@ namespace CMDb.Data
 
             //this.configuration = configuration;
         }
-        public async Task<IEnumerable<CmdbDto>> GetTopThreeMoviesByRating()
+        public async Task<IEnumerable<CmdbMovieDto>> GetTopThreeMoviesByRating()
         {
             //TODO: Fixa något
             using (HttpClient client = new HttpClient())
@@ -31,7 +31,7 @@ namespace CMDb.Data
                 var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
                 response.EnsureSuccessStatusCode();
                 var data = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<IEnumerable<CmdbDto>>(data);
+                var result = JsonConvert.DeserializeObject<IEnumerable<CmdbMovieDto>>(data);
 
 
                 return result;

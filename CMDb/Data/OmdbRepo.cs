@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace CMDb.Data
 {
-    public class OpenMovieDatabaseRepo : IOpenMovieDatabase
+    public class OmdbRepo : IOmdb
     {
         //IConfiguration configuration;
         private string baseUrl;
         private string key;
-        public OpenMovieDatabaseRepo(IConfiguration configuration)
+        public OmdbRepo(IConfiguration configuration)
         {
             baseUrl = configuration.GetValue<string>("OpenMovieDatabaseApi:BaseUrl");
             key = configuration.GetValue<string>("OpenMovieDatabaseApi:Key");
@@ -23,7 +23,7 @@ namespace CMDb.Data
 
             //this.configuration = configuration;
         }
-        public async Task<MoviesDto> GetMovie(string imdbId)
+        public async Task<OmdbMovieDto> GetMovie(string imdbId)
         {
             
             using (HttpClient client = new HttpClient())
@@ -33,18 +33,18 @@ namespace CMDb.Data
                 var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
                 response.EnsureSuccessStatusCode();
                 var data = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<MoviesDto>(data);
+                var result = JsonConvert.DeserializeObject<OmdbMovieDto>(data);
 
 
                 return result;
             }
         }
-        public async Task<IEnumerable<MoviesDto>> GetMovies(IEnumerable<CmdbDto> cmdbDtoMovies)
+        public async Task<IEnumerable<OmdbMovieDto>> GetMovies(IEnumerable<CmdbMovieDto> cmdbDtoMovies)
         {
 
             using (HttpClient client = new HttpClient())
             {
-                List<MoviesDto> movies = new List<MoviesDto>();
+                List<OmdbMovieDto> movies = new List<OmdbMovieDto>();
                 foreach (var movie in cmdbDtoMovies)
                 {
                     string movieId = $"?i={movie.ImdbId}";
@@ -52,7 +52,7 @@ namespace CMDb.Data
                     var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
                     response.EnsureSuccessStatusCode();
                     var data = await response.Content.ReadAsStringAsync();
-                    var result = JsonConvert.DeserializeObject<MoviesDto>(data);
+                    var result = JsonConvert.DeserializeObject<OmdbMovieDto>(data);
                     movies.Add(result);
 
                 }

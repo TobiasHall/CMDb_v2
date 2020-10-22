@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CMDb.Models.DTO
 {
-    public class CmdbDto
+    public class CmdbMovieDto
     {
         public string ImdbId { get; set; }
         public int NumberOfLikes { get; set; }

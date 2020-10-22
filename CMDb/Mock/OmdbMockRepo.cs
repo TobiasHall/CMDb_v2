@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace CMDb.Mock
 {
-    public class MockOpenMovieDatabaseRepo : IOpenMovieDatabase
+    public class OmdbMockRepo : IOmdb
     {
         string basePath;
-        public MockOpenMovieDatabaseRepo(IWebHostEnvironment webHostEnvironment)
+        public OmdbMockRepo(IWebHostEnvironment webHostEnvironment)
         {
             basePath = $"{webHostEnvironment.ContentRootPath}\\Mock\\MockData\\";
         }
@@ -35,15 +35,15 @@ namespace CMDb.Mock
         //}
 
 
-        public async Task<MoviesDto> GetMovie(string testFile=null)
+        public async Task<OmdbMovieDto> GetMovie(string testFile=null)
         {
             testFile = testFile ?? "joker.js";
-            var result = GetTestData<MoviesDto>(testFile);
+            var result = GetTestData<OmdbMovieDto>(testFile);
             await Task.Delay(0);
             return result;
         }       
 
-        public Task<IEnumerable<MoviesDto>> GetMovies(IEnumerable<CmdbDto> toplist)
+        public Task<IEnumerable<OmdbMovieDto>> GetMovies(IEnumerable<CmdbMovieDto> toplist)
         {
             throw new NotImplementedException();
         }
