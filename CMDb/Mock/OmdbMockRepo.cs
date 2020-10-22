@@ -39,7 +39,7 @@ namespace CMDb.Mock
             var listOfMovies = GetTestData<List<MovieDetailDto>>("MovieInfo.js");
             movies = listOfMovies;
             await Task.Delay(0);
-            return new MovieViewModel(movies.ToList());
+            return new MovieViewModel(movies);
             
         }
 
