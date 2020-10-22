@@ -1,4 +1,5 @@
 ﻿using CMDb.Models.DTO;
+using CMDb.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace CMDb.Data
     {
         Task<OmdbMovieDto> GetMovie(string imdbId);
         Task<IEnumerable<OmdbMovieDto>> GetMovies(IEnumerable<CmdbMovieDto> toplist);
+        Task<MovieViewModel> GetMovieViewModel(IEnumerable<CmdbMovieDto> cmdbDtoMovies);
     }
 }

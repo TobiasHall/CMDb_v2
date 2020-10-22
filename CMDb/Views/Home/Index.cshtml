@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OmdbMovieDto> 
+﻿@model CMDb.Models.ViewModels.MovieViewModel
     <!-- hero area start -->
     <section class="hero-area" id="home">
         <div class="container">
@@ -6,15 +6,15 @@
                 <div class="row hero-area-slide">
                     <div class="col-lg-6 col-md-5">
                         <div class="hero-area-content">
-                            <img src="@Model.ElementAt(0).Poster" alt="about"/>
+                            <img src="@Html.DisplayFor(model => model.Movies[0].Poster)" alt="about"/>
                             <h2 class="news-date">#1 rated <br />on CMDb</h2>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-7">
                         <div class="hero-area-content pr-50">
-                            <h2>@Model.ElementAt(0).Title</h2>
+                            <h2>@Html.DisplayFor(model => model.Movies[0].Title)</h2>
                             <div class="review">
-                                @foreach (var rating in Model.ElementAt(0).Ratings)
+                                @foreach (var rating in Model.Movies[0].Ratings)
                                 {
                                     <p>@Html.DisplayFor(item => rating.Source)</p>
                                     <p>@Html.DisplayFor(item => rating.Value)</p>
@@ -29,7 +29,7 @@
                                 </div>
                                 <h4>180k voters</h4>
                             </div>
-                            <p>@Model.ElementAt(0).Plot</p>
+                            <p>@Html.DisplayFor(model => model.Movies[0].Plot)</p>
 
                             <div class="slide-trailor">
                                 <h3>Click </h3>
@@ -41,15 +41,15 @@
                 <div class="row hero-area-slide">
                     <div class="col-lg-6 col-md-5">
                         <div class="hero-area-content">
-                            <img src="@Model.ElementAt(1).Poster" alt="about" />
+                            <img src="@Html.DisplayFor(model => model.Movies[1].Poster)" alt="about" />
                             <h2 class="news-date">#2 rated <br />on CMDb</h2>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-7">
                         <div class="hero-area-content pr-50">
-                            <h2>@Model.ElementAt(1).Title</h2>
+                            <h2>@Html.DisplayFor(model => model.Movies[1].Title)</h2>
                             <div class="review">
-                                @foreach (var rating in Model.ElementAt(1).Ratings)
+                                @foreach (var rating in Model.Movies[1].Ratings)
                                 {
                                     <p>@Html.DisplayFor(item => rating.Source)</p>
                                     <p>@Html.DisplayFor(item => rating.Value)</p>
@@ -64,7 +64,7 @@
                                 </div>
                                 <h4>180k voters</h4>
                             </div>
-                            <p>@Model.ElementAt(1).Plot</p>
+                            <p>@Html.DisplayFor(model => model.Movies[1].Plot)</p>
                             
                             <div class="slide-trailor">
                                 <h3>Watch Trailer</h3>
@@ -76,15 +76,15 @@
                 <div class="row hero-area-slide">
                     <div class="col-lg-6 col-md-5">
                         <div class="hero-area-content">
-                            <img src="@Model.ElementAt(2).Poster" alt="about" />
+                            <img src="@Html.DisplayFor(model => model.Movies[2].Poster)" alt="about" />
                             <h2 class="news-date">#3 rated <br />on CMDb</h2>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-7">
                         <div class="hero-area-content pr-50">
-                            <h2>@Model.ElementAt(2).Title</h2>
+                            <h2>@Html.DisplayFor(model => model.Movies[2].Title)</h2>
                             <div class="review">
-                                @foreach (var rating in Model.ElementAt(2).Ratings)
+                                @foreach (var rating in Model.Movies[2].Ratings)
                                 {
                                     <p>@Html.DisplayFor(item => rating.Source)</p>
                                     <p>@Html.DisplayFor(item => rating.Value)</p>
@@ -99,7 +99,7 @@
                                 </div>
                                 <h4>180k voters</h4>
                             </div>
-                            <p>@Model.ElementAt(2).Plot</p>
+                            <p>@Html.DisplayFor(model => model.Movies[2].Plot)</p>
                             <div class="slide-trailor">
                                 <h3>Watch Trailer</h3>
                                 <a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Tickets</a>

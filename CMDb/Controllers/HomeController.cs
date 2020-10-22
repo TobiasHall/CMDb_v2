@@ -12,19 +12,22 @@ namespace CMDb.Controllers
 
     public class HomeController : Controller
     {
-        private IOmdb openMovieDatabase;
+        private IOmdb omdb;
         private ICmdb cmdb;
 
         public HomeController(IOmdb openMovieDatabase, ICmdb cmdb)
         {
-            this.openMovieDatabase = openMovieDatabase;
+            this.omdb = openMovieDatabase;
             this.cmdb = cmdb;
         }
 
         public async Task<IActionResult> Index()
         {
             var toplist = await cmdb.GetTopThreeMoviesByRating();
-            var model = await openMovieDatabase.GetMovies(toplist);
+            //var model = await openMovieDatabase.GetMovies(toplist);
+
+            var model = await omdb.GetMovieViewModel(toplist);
+            
             
             //    var model2 = new MovieRatingsViewModel()
             //    {

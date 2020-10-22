@@ -21,10 +21,10 @@ namespace CMDb
             services.AddControllersWithViews();
 
             services.AddScoped<IOmdb, OmdbRepo>();
-            //services.AddScoped<IOpenMovieDatabase, OmdbMockRepo>();
+            //services.AddScoped<IOmdb, OmdbMockRepo>();
 
-            services.AddScoped<ICmdb, CmdbRepo>();
-            //services.AddScoped<ICmdb, CmdbMockRepo>();
+            //services.AddScoped<ICmdb, CmdbRepo>();
+            services.AddScoped<ICmdb, CmdbMockRepo>();
 
         }
 

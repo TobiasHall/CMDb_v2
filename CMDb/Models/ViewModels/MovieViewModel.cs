@@ -10,33 +10,22 @@ namespace CMDb.Models.ViewModels
 {
     public class MovieViewModel
     {
+        //public string Title { get; set; }
+        //public string Year { get; set; }
+        //public string Plot { get; set; }
+        //public string Poster { get; set; }
+        //public IEnumerable<OmdbMovieRatingDto> Ratings { get; set; }
         public string ImdbId { get; set; }
+        public int NumberOfLikes { get; set; }
+        public int NumberOfDislikes { get; set; }
 
 
-        private List<Movie> movies;
+        public List<MovieDetailDto> Movies { get; set; }
 
 
-        public string SelectedMovie { get; set; }
-        public IEnumerable<SelectListItem> Movies 
+        public MovieViewModel(List<MovieDetailDto> movies)
         {
-            get
-            {
-                if (movies != null)
-                {
-                    return movies
-                        .Select(movie => new SelectListItem()
-                        {
-                            Text = movie.ImdbId,
-                            Value = movie.ImdbId
-                        });
-                        //.OrderBy();
-                }
-                return null;
-            }
-        }
-        public MovieViewModel(CmdbMovieDto cmdbMovies, OmdbMovieDto moviesDto)
-        {
-            ImdbId = cmdbMovies.ImdbId;
+            this.Movies = movies;
         }
     }
 }

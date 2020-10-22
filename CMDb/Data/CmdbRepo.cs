@@ -24,7 +24,7 @@ namespace CMDb.Data
         }
         public async Task<IEnumerable<CmdbMovieDto>> GetTopThreeMoviesByRating()
         {
-            //TODO: Fixa något
+            
             using (HttpClient client = new HttpClient())
             {
                 string endpoint = $"{baseUrl}{rating}?count=3";

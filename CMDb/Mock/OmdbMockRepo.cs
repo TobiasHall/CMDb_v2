@@ -19,22 +19,6 @@ namespace CMDb.Mock
             basePath = $"{webHostEnvironment.ContentRootPath}\\Mock\\MockData\\";
         }
 
-        //public async Task<MovieRatingsViewModel> GetMovieRatingsViewModel(string movie=null)
-        //{
-        //    //Hämta filmer från CMDB
-        //    //Hämta infor från omdb
-        //    //skicka in dessa in i MovieRatingVM
-
-        //    movie = movie ?? "ett defaultvärde";
-        //    string topList = "Toplist.js";
-        //    var cmdbMovies = GetTestData<CmdbDto>(topList);
-        //    var omdbMovies = GetTestData<CmdbDto>("Movies.json");
-        //    await Task.Delay(0);
-        //    MovieRatingsViewModel 
-        //    return result;
-        //}
-
-
         public async Task<OmdbMovieDto> GetMovie(string testFile=null)
         {
             testFile = testFile ?? "joker.js";
@@ -48,14 +32,16 @@ namespace CMDb.Mock
             throw new NotImplementedException();
         }
 
+        public async Task<MovieViewModel> GetMovieViewModel(IEnumerable<CmdbMovieDto> cmdbDtoMovies)
+        {
+            List<MovieDetailDto> movies;
 
-        //public async Task<MoviesDto> GetMovie2(string movieSite)
-        //{
-        //    string testFile = "joker.js";
-        //    var result = GetTestData<MoviesDto>(testFile);
-        //    RatingsDto moviesDto = result.Ratings.Where(x => x.Value.Equals(movieSite)).FirstOrDefault();
-        //    return result;
-        //}
+            var listOfMovies = GetTestData<List<MovieDetailDto>>("MovieInfo.js");
+            movies = listOfMovies;
+            await Task.Delay(0);
+            return new MovieViewModel(movies.ToList());
+            
+        }
 
         /// <summary>
         /// Generisk klass

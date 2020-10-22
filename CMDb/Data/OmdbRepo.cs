@@ -1,4 +1,5 @@
 ﻿using CMDb.Models.DTO;
+using CMDb.Models.ViewModels;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
@@ -59,6 +60,30 @@ namespace CMDb.Data
 
 
                 return movies;
+            }
+        }
+        public async Task<MovieViewModel> GetMovieViewModel(IEnumerable<CmdbMovieDto> cmdbDtoMovies)
+        {
+
+            using (HttpClient client = new HttpClient())
+            {
+                List<MovieDetailDto> movies = new List<MovieDetailDto>();                
+                
+                foreach (var movie in cmdbDtoMovies)
+                {
+                    string movieId = $"?i={movie.ImdbId}";
+                    string endpoint = $"{baseUrl}{movieId}{key}";
+                    var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
+                    response.EnsureSuccessStatusCode();
+                    var data = await response.Content.ReadAsStringAsync();
+                    var result = JsonConvert.DeserializeObject<MovieDetailDto>(data);
+                    result.NumberOfLikes = movie.NumberOfLikes;
+                    result.NumberOfDislikes = movie.NumberOfDislikes;                    
+                    movies.Add(result);
+                }
+
+
+                return new MovieViewModel(movies);
             }
         }
     }
