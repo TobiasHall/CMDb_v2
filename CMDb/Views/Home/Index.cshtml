@@ -1,125 +1,29 @@
-﻿@model CMDb.Models.ViewModels.MovieViewModel
-    <!-- hero area start -->
+﻿@model MovieViewModel
+     
     <section class="hero-area" id="home">
         <div class="container">
             <div class="hero-area-slider">
-                <div class="row hero-area-slide">
-                    <div class="col-lg-6 col-md-5">
-                        <div class="hero-area-content">
-                            <img src="@Html.DisplayFor(model => model.Movies[0].Poster)" alt="about"/>
-                            <h2 class="news-date">#1 rated <br />on CMDb</h2>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-7">
-                        <div class="hero-area-content pr-50">
-                            <h2>@Html.DisplayFor(model => model.Movies[0].Title)</h2>
-                            <div class="review">
-                                @foreach (var rating in Model.Movies[0].Ratings)
-                                {
-                                    <p>@Html.DisplayFor(item => rating.Source)</p>
-                                    <p>@Html.DisplayFor(item => rating.Value)</p>
-                                    <br />
-                                }
-                                <div class="author-review">
-                                    <i class="icofont icofont-star"></i>
-                                    <i class="icofont icofont-star"></i>
-                                    <i class="icofont icofont-star"></i>
-                                    <i class="icofont icofont-star"></i>
-                                    <i class="icofont icofont-star"></i>
-                                </div>
-                                <h4>180k voters</h4>
-                            </div>
-                            <p>@Html.DisplayFor(model => model.Movies[0].Plot)</p>
-
-                            <div class="slide-trailor">
-                                <h3>Click </h3>
-                                <a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Tickets</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row hero-area-slide">
-                    <div class="col-lg-6 col-md-5">
-                        <div class="hero-area-content">
-                            <img src="@Html.DisplayFor(model => model.Movies[1].Poster)" alt="about" />
-                            <h2 class="news-date">#2 rated <br />on CMDb</h2>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-7">
-                        <div class="hero-area-content pr-50">
-                            <h2>@Html.DisplayFor(model => model.Movies[1].Title)</h2>
-                            <div class="review">
-                                @foreach (var rating in Model.Movies[1].Ratings)
-                                {
-                                    <p>@Html.DisplayFor(item => rating.Source)</p>
-                                    <p>@Html.DisplayFor(item => rating.Value)</p>
-                                    <br />
-                                }
-                                <div class="author-review">
-                                    <i class="icofont icofont-star"></i>
-                                    <i class="icofont icofont-star"></i>
-                                    <i class="icofont icofont-star"></i>
-                                    <i class="icofont icofont-star"></i>
-                                    <i class="icofont icofont-star"></i>
-                                </div>
-                                <h4>180k voters</h4>
-                            </div>
-                            <p>@Html.DisplayFor(model => model.Movies[1].Plot)</p>
-                            
-                            <div class="slide-trailor">
-                                <h3>Watch Trailer</h3>
-                                <a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Tickets</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row hero-area-slide">
-                    <div class="col-lg-6 col-md-5">
-                        <div class="hero-area-content">
-                            <img src="@Html.DisplayFor(model => model.Movies[2].Poster)" alt="about" />
-                            <h2 class="news-date">#3 rated <br />on CMDb</h2>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-7">
-                        <div class="hero-area-content pr-50">
-                            <h2>@Html.DisplayFor(model => model.Movies[2].Title)</h2>
-                            <div class="review">
-                                @foreach (var rating in Model.Movies[2].Ratings)
-                                {
-                                    <p>@Html.DisplayFor(item => rating.Source)</p>
-                                    <p>@Html.DisplayFor(item => rating.Value)</p>
-                                    <br />
-                                }
-                                <div class="author-review">
-                                    <i class="icofont icofont-star"></i>
-                                    <i class="icofont icofont-star"></i>
-                                    <i class="icofont icofont-star"></i>
-                                    <i class="icofont icofont-star"></i>
-                                    <i class="icofont icofont-star"></i>
-                                </div>
-                                <h4>180k voters</h4>
-                            </div>
-                            <p>@Html.DisplayFor(model => model.Movies[2].Plot)</p>
-                            <div class="slide-trailor">
-                                <h3>Watch Trailer</h3>
-                                <a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Tickets</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-area-thumb">
-                <div class="thumb-prev">
+                @for (int i = 0; i < 3; i++)
+                {
                     <div class="row hero-area-slide">
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 col-md-5">
                             <div class="hero-area-content">
-                                <img src="/img/slide3.png" alt="about" />
+                                <img src="@Html.DisplayFor(model => model.Movies[i].Poster)" alt="about" />
+                                <h2 class="news-date">Top 3 rated <br />on CMDb</h2>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 col-md-7">
                             <div class="hero-area-content pr-50">
-                                <h2>Last Avatar</h2>
+                                <h2>@Html.DisplayFor(model => model.Movies[i].Title)</h2>
                                 <div class="review">
+                                    @foreach (var rating in Model.Movies[i].Ratings)
+                                    {
+                                    <ul>
+                                        <h6>@Html.DisplayFor(item => rating.Source)</h6>
+                                        <p>@Html.DisplayFor(item => rating.Value)</p>
+                                        <br />
+                                    </ul>
+                                    }
                                     <div class="author-review">
                                         <i class="icofont icofont-star"></i>
                                         <i class="icofont icofont-star"></i>
@@ -129,12 +33,25 @@
                                     </div>
                                     <h4>180k voters</h4>
                                 </div>
-                                <p>She is a devil princess from the demon world. She grew up sheltered by her parents and doesn't really know how to be evil or any of the common actions,   She is unable to cry due to Keita's accidental first wish, despite needed for him to wish...</p>
-                                <div class="slide-trailor">
-                                    <h3>Watch Trailer</h3>
-                                    <a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Tickets</a>
+                                <p>@Html.DisplayFor(model => model.Movies[i].Plot)</p>
+                                <div class="slide-trailor">                                    
+                                    <a class="theme-btn theme-btn2" href="#"><i class="icofont "></i> Go to movie</a>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                 }
+            </div>
+            <div class="hero-area-thumb">
+                <div class="thumb-prev">
+                    <div class="row hero-area-slide">
+                        <div class="col-lg-6">
+                            <div class="hero-area-content">
+                                <img src="@Html.DisplayFor(model => model.Movies[1].Poster)" alt="about" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <p>@Html.DisplayFor(model => model.Movies[1].Plot)</p>
                         </div>
                     </div>
                 </div>
@@ -142,35 +59,18 @@
                     <div class="row hero-area-slide">
                         <div class="col-lg-6">
                             <div class="hero-area-content">
-                                <img src="/img/slide1.png" alt="about" />
+                                <img src="@Html.DisplayFor(model => model.Movies[2].Poster)" alt="about" />
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="hero-area-content pr-50">
-                                <h2>The Deer God</h2>
-                                <div class="review">
-                                    <div class="author-review">
-                                        <i class="icofont icofont-star"></i>
-                                        <i class="icofont icofont-star"></i>
-                                        <i class="icofont icofont-star"></i>
-                                        <i class="icofont icofont-star"></i>
-                                        <i class="icofont icofont-star"></i>
-                                    </div>
-                                    <h4>180k voters</h4>
-                                </div>
-                                <p>She is a devil princess from the demon world. She grew up sheltered by her parents and doesn't really know how to be evil or any of the common actions,   She is unable to cry due to Keita's accidental first wish, despite needed for him to wish...</p>
-                                <div class="slide-trailor">
-                                    <h3>Watch Trailer</h3>
-                                    <a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Tickets</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                            <p>@Html.DisplayFor(model => model.Movies[2].Plot)</p>                                
+                         </div>
+                     </div>
                 </div>
-            </div>
+            </div>            
         </div>
-    </section><!-- hero area end -->
-    <!-- portfolio section start -->
+    </section>
+
     <section class="portfolio-area pt-60">
         <div class="container">
             <h1><i class="icofont icofont-movie"></i> Spotlight This Month</h1>
@@ -179,148 +79,40 @@
             <div class="row">
                 <div class="col-lg-9">
                     <div class="row portfolio-item">
-                        <div class="col-md-4 col-sm-6 soon released">
-                            <div class="single-portfolio">
-                                <div class="single-portfolio-img">
-                                    <img src="/img/portfolio/portfolio1.png" alt="portfolio" />
-                                    <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-                                        <i class="icofont icofont-ui-play"></i>
-                                    </a>
-                                </div>
-                                <div class="portfolio-content">
-                                    <h2>Boyz II Men</h2>
-                                    <div class="review">
-                                        <div class="author-review">
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
+                        @for (int i = 0; i < 10; i++)
+                        {
+                            @if (i > 2)
+                            {
+
+                            <div class="col-md-4 col-sm-6 soon released">
+                                <div class="single-portfolio">
+                                    <div class="single-portfolio-img">
+                                        <a href="#">
+                                            <img src="@Html.DisplayFor(model => model.Movies[i].Poster)" alt="about" />
+                                        </a>
+                                    </div>
+                                    <div class="portfolio-content">
+                                        <h2>@Html.DisplayFor(model => model.Movies[i].Title)</h2>
+                                        <div class="review">
+                                            <div class="author-review">
+                                                <i class="icofont icofont-star"></i>
+                                                <i class="icofont icofont-star"></i>
+                                                <i class="icofont icofont-star"></i>
+                                                <i class="icofont icofont-star"></i>
+                                                <i class="icofont icofont-star"></i>
+                                            </div>
+                                            <h4>180k voters</h4>
                                         </div>
-                                        <h4>180k voters</h4>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 top">
-                            <div class="single-portfolio">
-                                <div class="single-portfolio-img">
-                                    <img src="/img/portfolio/portfolio2.png" alt="portfolio" />
-                                    <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-                                        <i class="icofont icofont-ui-play"></i>
-                                    </a>
-                                </div>
-                                <div class="portfolio-content">
-                                    <h2>Tale of Revemge</h2>
-                                    <div class="review">
-                                        <div class="author-review">
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                        </div>
-                                        <h4>180k voters</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 soon">
-                            <div class="single-portfolio">
-                                <div class="single-portfolio-img">
-                                    <img src="/img/portfolio/portfolio3.png" alt="portfolio" />
-                                    <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-                                        <i class="icofont icofont-ui-play"></i>
-                                    </a>
-                                </div>
-                                <div class="portfolio-content">
-                                    <h2>The Lost City of Z</h2>
-                                    <div class="review">
-                                        <div class="author-review">
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                        </div>
-                                        <h4>180k voters</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 top released">
-                            <div class="single-portfolio">
-                                <div class="single-portfolio-img">
-                                    <img src="/img/portfolio/portfolio4.png" alt="portfolio" />
-                                    <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-                                        <i class="icofont icofont-ui-play"></i>
-                                    </a>
-                                </div>
-                                <div class="portfolio-content">
-                                    <h2>Beast Beauty</h2>
-                                    <div class="review">
-                                        <div class="author-review">
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                        </div>
-                                        <h4>180k voters</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 released">
-                            <div class="single-portfolio">
-                                <div class="single-portfolio-img">
-                                    <img src="/img/portfolio/portfolio5.png" alt="portfolio" />
-                                    <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-                                        <i class="icofont icofont-ui-play"></i>
-                                    </a>
-                                </div>
-                                <div class="portfolio-content">
-                                    <h2>In The Fade</h2>
-                                    <div class="review">
-                                        <div class="author-review">
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                        </div>
-                                        <h4>180k voters</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 soon top">
-                            <div class="single-portfolio">
-                                <div class="single-portfolio-img">
-                                    <img src="/img/portfolio/portfolio6.png" alt="portfolio" />
-                                    <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-                                        <i class="icofont icofont-ui-play"></i>
-                                    </a>
-                                </div>
-                                <div class="portfolio-content">
-                                    <h2>Last Hero</h2>
-                                    <div class="review">
-                                        <div class="author-review">
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                        </div>
-                                        <h4>180k voters</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            }
+
+                         }
                     </div>
                 </div>
 
             </div>
         </div>
-    </section><!-- portfolio section end -->
+    </section>
     

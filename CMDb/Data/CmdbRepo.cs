@@ -27,7 +27,7 @@ namespace CMDb.Data
             
             using (HttpClient client = new HttpClient())
             {
-                string endpoint = $"{baseUrl}{rating}?count=3";
+                string endpoint = $"{baseUrl}{rating}&count=10";
                 var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
                 response.EnsureSuccessStatusCode();
                 var data = await response.Content.ReadAsStringAsync();
