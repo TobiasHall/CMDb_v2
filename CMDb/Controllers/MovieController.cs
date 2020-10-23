@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CMDb.Data;
+using CMDb.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CMDb.Controllers
@@ -20,6 +21,16 @@ namespace CMDb.Controllers
 
         public async Task<IActionResult> Index()
         {
+            var cmdbMovies = await cmdb.GetToplistByPopularitAndCount();
+            var model = await omdb.GetMovieViewModel(cmdbMovies);
+
+
+            return View(model);
+        }
+
+        public async Task<IActionResult> Detail(MovieDetailDto movie)
+        {
+            var test = movie;
             var cmdbMovies = await cmdb.GetToplistByPopularitAndCount();
             var model = await omdb.GetMovieViewModel(cmdbMovies);
 
