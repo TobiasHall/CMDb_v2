@@ -23,7 +23,7 @@ namespace CMDb.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var toplist = await cmdb.GetTopThreeMoviesByRating();
+            var toplist = await cmdb.GetToplistWithRatingAndCount();
             //var model = await openMovieDatabase.GetMovies(toplist);
 
             var model = await omdb.GetMovieViewModel(toplist);

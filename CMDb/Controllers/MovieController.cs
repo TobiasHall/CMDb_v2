@@ -10,16 +10,20 @@ namespace CMDb.Controllers
     public class MovieController : Controller
     {
         private ICmdb cmdb;
+        private IOmdb omdb;
 
-        public MovieController(ICmdb cmdbRepo)
+        public MovieController(ICmdb cmdbRepo, IOmdb omdb)
         {
             this.cmdb = cmdbRepo;
+            this.omdb = omdb;
         }
 
         public async Task<IActionResult> Index()
         {
-            var model = await cmdb.GetTopThreeMoviesByRating();
-            
+            var cmdbMovies = await cmdb.GetToplistByPopularitAndCount();
+            var model = await omdb.GetMovieViewModel(cmdbMovies);
+
+
             return View(model);
         }
     }

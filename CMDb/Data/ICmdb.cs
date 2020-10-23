@@ -8,6 +8,7 @@ namespace CMDb.Data
 {
     public interface ICmdb
     {
-        Task<IEnumerable<CmdbMovieDto>> GetTopThreeMoviesByRating();
+        Task<IEnumerable<CmdbMovieDto>> GetToplistByPopularitAndCount();
+        Task<IEnumerable<CmdbMovieDto>> GetToplistWithRatingAndCount();
     }
 }

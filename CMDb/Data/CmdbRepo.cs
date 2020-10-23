@@ -13,21 +13,39 @@ namespace CMDb.Data
     {
         private string baseUrl;
         private string rating;
+        private string popularity;
 
 
         public CmdbRepo(IConfiguration configuration)
         {
             baseUrl = configuration.GetValue<string>("CMDbApi:BaseUrl");
             rating = configuration.GetValue<string>("CMDbApi:ToplistByRating");
+            popularity = configuration.GetValue<string>("CMDbApi:ToplistByPopularity");
 
             //this.configuration = configuration;
         }
-        public async Task<IEnumerable<CmdbMovieDto>> GetTopThreeMoviesByRating()
+        public async Task<IEnumerable<CmdbMovieDto>> GetToplistWithRatingAndCount()
         {
             
             using (HttpClient client = new HttpClient())
             {
                 string endpoint = $"{baseUrl}{rating}&count=10";
+                var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
+                response.EnsureSuccessStatusCode();
+                var data = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<IEnumerable<CmdbMovieDto>>(data);
+
+
+                return result;
+            }
+
+        }
+        public async Task<IEnumerable<CmdbMovieDto>> GetToplistByPopularitAndCount()
+        {
+
+            using (HttpClient client = new HttpClient())
+            {
+                string endpoint = $"{baseUrl}{popularity}&count=10";
                 var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
                 response.EnsureSuccessStatusCode();
                 var data = await response.Content.ReadAsStringAsync();
