@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CMDb.Data;
+using CMDb.Infrastructure;
 using CMDb.Mock;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -20,11 +21,13 @@ namespace CMDb
         {
             services.AddControllersWithViews();
 
-            services.AddScoped<IOmdb, OmdbRepo>();
-            //services.AddScoped<IOmdb, OmdbMockRepo>();
+            services.AddScoped<IApiClient, ApiClient>();
 
-            services.AddScoped<ICmdb, CmdbRepo>();
-            //services.AddScoped<ICmdb, CmdbMockRepo>();
+            //services.AddScoped<IOmdb, OmdbRepo>();
+            services.AddScoped<IOmdb, OmdbMockRepo>();
+
+            //services.AddScoped<ICmdb, CmdbRepo>();
+            services.AddScoped<ICmdb, CmdbMockRepo>();
 
         }
 

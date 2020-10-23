@@ -1,4 +1,5 @@
-﻿using CMDb.Models.DTO;
+﻿using CMDb.Infrastructure;
+using CMDb.Models.DTO;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
@@ -14,14 +15,15 @@ namespace CMDb.Data
         private string baseUrl;
         private string rating;
         private string popularity;
+        private IApiClient apiClient;
 
 
-        public CmdbRepo(IConfiguration configuration)
+        public CmdbRepo(IConfiguration configuration, IApiClient apiClient)
         {
             baseUrl = configuration.GetValue<string>("CMDbApi:BaseUrl");
             rating = configuration.GetValue<string>("CMDbApi:ToplistByRating");
             popularity = configuration.GetValue<string>("CMDbApi:ToplistByPopularity");
-
+            this.apiClient = apiClient;
             //this.configuration = configuration;
         }
         public async Task<IEnumerable<CmdbMovieDto>> GetToplistWithRatingAndCount()
@@ -30,13 +32,18 @@ namespace CMDb.Data
             using (HttpClient client = new HttpClient())
             {
                 string endpoint = $"{baseUrl}{rating}&count=10";
-                var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
-                response.EnsureSuccessStatusCode();
-                var data = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<IEnumerable<CmdbMovieDto>>(data);
+                
+
+                return await apiClient.GetAsync<IEnumerable<CmdbMovieDto>>(endpoint);
 
 
-                return result;
+                //var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
+                //response.EnsureSuccessStatusCode();
+                //var data = await response.Content.ReadAsStringAsync();
+                //var result = JsonConvert.DeserializeObject<IEnumerable<CmdbMovieDto>>(data);
+
+
+                //return result;
             }
 
         }
@@ -46,13 +53,15 @@ namespace CMDb.Data
             using (HttpClient client = new HttpClient())
             {
                 string endpoint = $"{baseUrl}{popularity}&count=10";
-                var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
-                response.EnsureSuccessStatusCode();
-                var data = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<IEnumerable<CmdbMovieDto>>(data);
+                return await apiClient.GetAsync<IEnumerable<CmdbMovieDto>>(endpoint);
+
+                //var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
+                //response.EnsureSuccessStatusCode();
+                //var data = await response.Content.ReadAsStringAsync();
+                //var result = JsonConvert.DeserializeObject<IEnumerable<CmdbMovieDto>>(data);
 
 
-                return result;
+                //return result;
             }
 
         }

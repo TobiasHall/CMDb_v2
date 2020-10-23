@@ -58,6 +58,7 @@ namespace CMDb.Data
 
                 }
 
+                //return await apiClient.GetAsync<IEnumerable<CmdbMovieDto>>(endpoint);
 
                 return movies;
             }
