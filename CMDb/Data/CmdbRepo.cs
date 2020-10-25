@@ -50,8 +50,6 @@ namespace CMDb.Data
         public async Task<IEnumerable<CmdbMovieDto>> GetToplistByPopularitAndCount()
         {
 
-            using (HttpClient client = new HttpClient())
-            {
                 string endpoint = $"{baseUrl}{popularity}&count=10";
                 return await apiClient.GetAsync<IEnumerable<CmdbMovieDto>>(endpoint);
 
@@ -59,11 +57,7 @@ namespace CMDb.Data
                 //response.EnsureSuccessStatusCode();
                 //var data = await response.Content.ReadAsStringAsync();
                 //var result = JsonConvert.DeserializeObject<IEnumerable<CmdbMovieDto>>(data);
-
-
                 //return result;
-            }
-
         }
     }
 }

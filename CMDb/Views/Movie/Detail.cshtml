@@ -1,4 +1,4 @@
-﻿@model MovieDetailDto
+﻿@model DetailPageViewModel
 
 <section class="breadcrumb-area">
     <div class="container">
@@ -18,12 +18,12 @@
             <div class="row flexbox-center">
                 <div class="col-lg-5 text-lg-left text-center">
                     <div class="transformers-content">
-                        <img src="assets/img/slide2.png" alt="about" />
+                        <img src="@Model.Poster" alt="about" />
                     </div>
                 </div>
                 <div class="col-lg-7">
                     <div class="transformers-content">
-                        <h2>The Transformers</h2>
+                        <h2>@Model.Title</h2>
                         <p>3D | Animation | Action | Sci-Fi</p>
                         <ul>
                             <li>
@@ -115,7 +115,7 @@
                 <div class="details-content">
                     <div class="details-overview">
                         <h2>Overview</h2>
-                        <p>Humans are at war with the Transformers, and Optimus Prime is gone. The key to saving the future lies buried in the secrets of the past and the hidden history of Transformers on Earth. Now it's up to the unlikely alliance of inventor Cade Yeager, Bumblebee, a n English lord and an Oxford professor to save the world. Transformers: The Last Knight has a deeper mythos and bigger spectacle than its predecessors, yet still ends up being mostly hollow and cacophonous. The first "Transformers" movie that could actually be characterized as badass. Which isn't a bad thing. It may, in fact, be better.</p>
+                        <p>@Model.Plot</p>
                     </div>
                     <div class="details-reply">
                         <h2>Leave a Reply</h2>

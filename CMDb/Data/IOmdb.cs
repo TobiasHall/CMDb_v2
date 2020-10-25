@@ -9,8 +9,11 @@ namespace CMDb.Data
 {
     public interface IOmdb
     {
+        Task<DetailPageViewModel> GetDetailPage(MovieDetailDto movieDetailDto);
         Task<OmdbMovieDto> GetMovie(string imdbId);
-        Task<IEnumerable<OmdbMovieDto>> GetMovies(IEnumerable<CmdbMovieDto> toplist);
+
+        //Denna avnänds inte???
+        //Task<IEnumerable<OmdbMovieDto>> GetMovies(IEnumerable<CmdbMovieDto> toplist);
         Task<MovieViewModel> GetMovieViewModel(IEnumerable<CmdbMovieDto> cmdbDtoMovies);
     }
 }
