@@ -83,28 +83,12 @@
                        {
                            <div class="col-md-4 col-sm-6 soon released">
                                 <div class="single-portfolio">
-                                            <img src="@movie.Poster" alt="about" />
                                     <div class="single-portfolio-img">
-                                        <a>
-                                            @Html.ActionLink(
-                                           linkText: "Hejsan",
-                                           actionName: "Detail",
-                                           controllerName: "Movie",
-                                           routeValues: new MovieDetailDto
-                                                {
-                                               ImdbId = movie.ImdbId,
-                                               NumberOfLikes = movie.NumberOfLikes,
-                                               NumberOfDislikes = movie.NumberOfDislikes,
-                                               Title = movie.Title,
-                                               Year = movie.Year,
-                                               Plot = movie.Plot,
-                                               Ratings = movie.Ratings,
-                                               Poster = movie.Poster
-                                           })
-                                        </a>
+
                                     </div>
                                     <div class="portfolio-content">
-                                        <h2>@movie.Title)</h2>
+                                        <img src="@movie.Poster" alt="about" />
+                                        <h2>@Html.ActionLink(linkText: movie.Title, actionName: "Detail", controllerName: "Movie", routeValues: movie)</h2>
                                         <div class="review">
                                             <div class="author-review">
                                                 <i class="icofont icofont-star"></i>
@@ -118,9 +102,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
-
-                         }
+                        }
                     </div>
                 </div>
 

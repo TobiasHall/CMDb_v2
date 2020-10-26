@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CMDb.Data;
 using CMDb.Models.DTO;
+using CMDb.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CMDb.Controllers
@@ -31,11 +32,10 @@ namespace CMDb.Controllers
         public async Task<IActionResult> Detail(MovieDetailDto movie)
         {
             var test = movie;
-            var cmdbMovies = await cmdb.GetToplistByPopularitAndCount();
-            var model = await omdb.GetMovieViewModel(cmdbMovies);
 
+            //var movieViewModel = new MovieViewModel(movie);
 
-            return View(model);
+            return View(test);
         }
     }
 }
