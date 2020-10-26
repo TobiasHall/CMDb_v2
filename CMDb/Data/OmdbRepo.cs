@@ -15,7 +15,6 @@ namespace CMDb.Data
 {
     public class OmdbRepo : IOmdb
     {
-        //IConfiguration configuration;
         private string baseUrl;
         private string key;
         IApiClient apiClient;
@@ -24,44 +23,16 @@ namespace CMDb.Data
             baseUrl = configuration.GetValue<string>("OpenMovieDatabaseApi:BaseUrl");
             key = configuration.GetValue<string>("OpenMovieDatabaseApi:Key");
             this.apiClient = apiClient;
-
-            //this.configuration = configuration;
+            
         }
         public async Task<OmdbMovieDto> GetMovie(string imdbId)
         {
 
                 return await apiClient.GetAsync<OmdbMovieDto>($"{baseUrl}{key}{imdbId}");
         }
-
-        //Denna avnänds inte???
-        //public async Task<IEnumerable<OmdbMovieDto>> GetMovies(IEnumerable<CmdbMovieDto> cmdbDtoMovies)
-        //{
-
-        //    using (HttpClient client = new HttpClient())
-        //    {
-        //        List<OmdbMovieDto> movies = new List<OmdbMovieDto>();
-        //        foreach (var movie in cmdbDtoMovies)
-        //        {
-        //            string movieId = $"?i={movie.ImdbId}";
-        //            string endpoint = $"{baseUrl}{movieId}{key}";
-        //            var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
-        //            response.EnsureSuccessStatusCode();
-        //            var data = await response.Content.ReadAsStringAsync();
-        //            var result = JsonConvert.DeserializeObject<OmdbMovieDto>(data);
-        //            movies.Add(result);
-
-        //        }
-
-        //        //return await apiClient.GetAsync<IEnumerable<CmdbMovieDto>>(endpoint);
-
-        //        return movies;
-        //    }
-        //}
-        public async Task<MovieViewModel> GetMovieViewModel(IEnumerable<CmdbMovieDto> cmdbDtoMovies)
-        {
-
-            using (HttpClient client = new HttpClient())
-            {
+        
+        public async Task<MovieViewModel> GetMovieViewModelIEnum(IEnumerable<CmdbMovieDto> cmdbDtoMovies)
+        {           
                 List<MovieDetailDto> movies = new List<MovieDetailDto>();                
                 
                 foreach (var movie in cmdbDtoMovies)
@@ -73,17 +44,17 @@ namespace CMDb.Data
                     movies.Add(result);
                 }
 
-
-                return new MovieViewModel(movies);
-            }
+                return new MovieViewModel(movies);         
         }
 
-
-        //är detta en task eller bara en metod DetailPageViewModel getDetailPage()?
-        public async Task<DetailPageViewModel> GetDetailPage(MovieDetailDto movieDetailDto)
+        public async Task<DetailPageViewModel> GetMovieViewModel(CmdbMovieDto cmdbDtoMovies)
         {
-            return new DetailPageViewModel(movieDetailDto);
-        }
+            string movieId = $"?i={cmdbDtoMovies.ImdbId}";
+            var result = await apiClient.GetAsync<MovieDetailDto>($"{baseUrl}{movieId}{key}");
+            result.NumberOfLikes = cmdbDtoMovies.NumberOfLikes;
+            result.NumberOfDislikes = cmdbDtoMovies.NumberOfDislikes;
 
+            return new DetailPageViewModel(result);
+        }
     }
 }

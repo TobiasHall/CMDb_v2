@@ -8,12 +8,10 @@ using System.Threading.Tasks;
 namespace CMDb.Data
 {
     public interface IOmdb
-    {
-        Task<DetailPageViewModel> GetDetailPage(MovieDetailDto movieDetailDto);
+    {        
         Task<OmdbMovieDto> GetMovie(string imdbId);
 
-        //Denna avnänds inte???
-        //Task<IEnumerable<OmdbMovieDto>> GetMovies(IEnumerable<CmdbMovieDto> toplist);
-        Task<MovieViewModel> GetMovieViewModel(IEnumerable<CmdbMovieDto> cmdbDtoMovies);
+        Task<MovieViewModel> GetMovieViewModelIEnum(IEnumerable<CmdbMovieDto> cmdbDtoMovies);
+        Task<DetailPageViewModel> GetMovieViewModel(CmdbMovieDto cmdbDtoMovies);
     }
 }

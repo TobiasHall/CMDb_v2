@@ -20,10 +20,7 @@ namespace CMDb.Mock
             basePath = $"{webHostEnvironment.ContentRootPath}\\Mock\\MockData\\";
         }
 
-        public async Task<DetailPageViewModel> GetDetailPage(MovieDetailDto movieDetailDto)
-        {
-            return new DetailPageViewModel(movieDetailDto);
-        }
+        
 
         public async Task<OmdbMovieDto> GetMovie(string testFile=null)
         {
@@ -31,28 +28,17 @@ namespace CMDb.Mock
             var result = FileHandler.GetTestData<OmdbMovieDto>(basePath + testFile);
             await Task.Delay(0);
             return result;
-        }       
+        }
 
+        public async Task<DetailPageViewModel> GetMovieViewModel(CmdbMovieDto cmdbDtoMovies)
+        {
+            string testFile = "DetailPageVM.js";
+            var result = FileHandler.GetTestData<MovieDetailDto>(basePath + testFile);
+            await Task.Delay(0);
+            return new DetailPageViewModel(result);
+        }
 
-        //Denna avnänds inte???
-        //public async Task<IEnumerable<OmdbMovieDto>> GetMovies(IEnumerable<CmdbMovieDto> toplist)
-        //{
-        //    List<OmdbMovieDto> movies = new List<OmdbMovieDto>();
-        //    foreach (var movie in toplist)
-        //    {
-        //        string testFile = "movies.js";
-        //        var result = GetTestData<CmdbMovieDto>(testFile);
-        //        await Task.Delay(0);
-        //        //movies.Add();
-
-        //    }
-
-        //    //return await apiClient.GetAsync<IEnumerable<CmdbMovieDto>>(endpoint);
-
-        //    return movies;
-        //}
-
-        public async Task<MovieViewModel> GetMovieViewModel(IEnumerable<CmdbMovieDto> cmdbDtoMovies)
+        public async Task<MovieViewModel> GetMovieViewModelIEnum(IEnumerable<CmdbMovieDto> cmdbDtoMovies)
         {
             List<MovieDetailDto> movies;
 
@@ -62,15 +48,5 @@ namespace CMDb.Mock
             return new MovieViewModel(movies);
             
         }
-
-
-        //Denna behövs inte nu på grund av FileHandler.getTestData
-        //private T GetTestData<T>(string testFile)
-        //{
-        //    string path = $"{basePath}{testFile}";
-        //    string data = File.ReadAllText(path);
-        //    var result = JsonConvert.DeserializeObject<T>(data);
-        //    return result;
-        //}
     }
 }

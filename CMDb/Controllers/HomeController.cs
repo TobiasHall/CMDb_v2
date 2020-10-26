@@ -26,7 +26,7 @@ namespace CMDb.Controllers
             var toplist = await cmdb.GetToplistWithRatingAndCount();
             //var model = await openMovieDatabase.GetMovies(toplist);
 
-            var model = await omdb.GetMovieViewModel(toplist);
+            var model = await omdb.GetMovieViewModelIEnum(toplist);
             
             
             //    var model2 = new MovieRatingsViewModel()

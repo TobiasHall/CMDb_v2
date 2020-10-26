@@ -1,5 +1,6 @@
 ﻿using CMDb.Infrastructure;
 using CMDb.Models.DTO;
+using CMDb.Models.ViewModels;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
@@ -58,6 +59,11 @@ namespace CMDb.Data
                 //var data = await response.Content.ReadAsStringAsync();
                 //var result = JsonConvert.DeserializeObject<IEnumerable<CmdbMovieDto>>(data);
                 //return result;
+        }
+
+        public async Task<CmdbMovieDto> GetMovie(string id)
+        {
+            return await apiClient.GetAsync<CmdbMovieDto>($"{baseUrl}Movie/{id}");
         }
     }
 }

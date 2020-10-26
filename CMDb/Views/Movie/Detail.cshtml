@@ -23,15 +23,14 @@
                 </div>
                 <div class="col-lg-7">
                     <div class="transformers-content">
-                        <h2>@Model.Title</h2>
-                        <p>3D | Animation | Action | Sci-Fi</p>
+                        <h2>@Model.Title</h2>                        
                         <ul>
                             <li>
                                 <div class="transformers-left">
-                                    Movie:
+                                    Genre:
                                 </div>
                                 <div class="transformers-right">
-                                    Sci-Fic
+                                    @Model.Genre
                                 </div>
                             </li>
                             <li>
@@ -39,7 +38,7 @@
                                     Writer:
                                 </div>
                                 <div class="transformers-right">
-                                    Stephen McFeely, Christopher Markus
+                                    @Model.Writer
                                 </div>
                             </li>
                             <li>
@@ -47,15 +46,15 @@
                                     Director:
                                 </div>
                                 <div class="transformers-right">
-                                    Joe Johnston
+                                    @Model.Director
                                 </div>
                             </li>
                             <li>
                                 <div class="transformers-left">
-                                    Time:
+                                    Runtime:
                                 </div>
                                 <div class="transformers-right">
-                                    190m
+                                    @Model.Runtime
                                 </div>
                             </li>
                             <li>
@@ -63,7 +62,7 @@
                                     Release:
                                 </div>
                                 <div class="transformers-right">
-                                    2018-07-22
+                                    @Model.Released
                                 </div>
                             </li>
                             <li>
@@ -71,7 +70,7 @@
                                     Language:
                                 </div>
                                 <div class="transformers-right">
-                                    English, Russian
+                                    @Model.Language
                                 </div>
                             </li>
                             <li>
@@ -103,7 +102,7 @@
                         <p>@Model.Plot</p>
                     </div>
                     <div class="details-reply">
-                        <h2>Leave a Reply</h2>
+                        <h2>Leave a Comment</h2>
                         <form action="#">
                             <div class="row">
                                 <div class="col-lg-4">
