@@ -1,4 +1,5 @@
 ﻿using CMDb.Data;
+using CMDb.Infrastructure;
 using CMDb.Models.DTO;
 using Microsoft.AspNetCore.Hosting;
 using Newtonsoft.Json;
@@ -18,17 +19,18 @@ namespace CMDb.Mock
             basePath = $"{webHostEnvironment.ContentRootPath}\\Mock\\MockData\\";
         }
 
-        private T GetTestData<T>(string testFile)
-        {
-            string path = $"{basePath}{testFile}";
-            string data = File.ReadAllText(path);
-            var result = JsonConvert.DeserializeObject<T>(data);
-            return result;
-        }
+        //Denna behövs inte längre på grund av FileHandler
+        //private T GetTestData<T>(string testFile)
+        //{
+        //    string path = $"{basePath}{testFile}";
+        //    string data = File.ReadAllText(path);
+        //    var result = JsonConvert.DeserializeObject<T>(data);
+        //    return result;
+        //}
        public async Task<IEnumerable<CmdbMovieDto>> GetToplistWithRatingAndCount()
         {
             string testFile = "toplist.js";
-            var result = GetTestData<IEnumerable<CmdbMovieDto>>(testFile);
+            var result = FileHandler.GetTestData<IEnumerable<CmdbMovieDto>>(basePath + testFile);
             await Task.Delay(0);
             return result;
         }
@@ -36,7 +38,7 @@ namespace CMDb.Mock
         public async Task<IEnumerable<CmdbMovieDto>> GetToplistByPopularitAndCount()
         {
             string testFile = "toplist.js";
-            var result = GetTestData<IEnumerable<CmdbMovieDto>>(testFile);
+            var result = FileHandler.GetTestData<IEnumerable<CmdbMovieDto>>(basePath + testFile);
             await Task.Delay(0);
             return result;
         }

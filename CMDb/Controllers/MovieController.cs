@@ -31,11 +31,8 @@ namespace CMDb.Controllers
 
         public async Task<IActionResult> Detail(MovieDetailDto movie)
         {
-            var test = movie;
-
-            //var movieViewModel = new MovieViewModel(movie);
-
-            return View(test);
+            var model = await omdb.GetDetailPage(movie);
+            return View(model);
         }
     }
 }
