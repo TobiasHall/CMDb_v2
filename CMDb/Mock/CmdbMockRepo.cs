@@ -20,14 +20,6 @@ namespace CMDb.Mock
             basePath = $"{webHostEnvironment.ContentRootPath}\\Mock\\MockData\\";
         }
 
-        //Denna behövs inte längre på grund av FileHandler
-        //private T GetTestData<T>(string testFile)
-        //{
-        //    string path = $"{basePath}{testFile}";
-        //    string data = File.ReadAllText(path);
-        //    var result = JsonConvert.DeserializeObject<T>(data);
-        //    return result;
-        //}
        public async Task<IEnumerable<CmdbMovieDto>> GetToplistWithRatingAndCount()
         {
             string testFile = "toplist.js";
@@ -50,6 +42,16 @@ namespace CMDb.Mock
             var result = FileHandler.GetTestData<CmdbMovieDto>(basePath + testFile);
             await Task.Delay(0);
             return result;
+        }
+
+        public Task<CmdbMovieDto> GetLike(string imdbId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<CmdbMovieDto> GetDisLike(string imdbId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

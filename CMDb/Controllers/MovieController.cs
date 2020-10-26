@@ -28,13 +28,22 @@ namespace CMDb.Controllers
 
             return View(model);
         }
-
-        public async Task<IActionResult> Detail(MovieDetailDto movie)
-        {
-            var model = await cmdb.GetMovie(movie.ImdbId);
+        [HttpGet("Movie/Detail")]
+        public async Task<IActionResult> Detail(string imdbId)
+        {//TODO:Lös så att det blir snyggare här, så att båda detail kan ta in en sträng
+            //Gå det att lösa med att ha en bool som inparameter också
+            var model = await cmdb.GetMovie(imdbId);
             var model2 = await omdb.GetMovieViewModel(model);
 
             return View(model2);
+        }
+        [HttpGet("Movie/Search")]
+        public async Task<IActionResult> Search(string titel)
+        {
+            ModelState.Clear();
+            var model = await omdb.GetMovieByTitel(titel);
+
+            return View("detail", model);
         }
     }
 }

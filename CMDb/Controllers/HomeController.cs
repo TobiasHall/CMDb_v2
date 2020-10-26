@@ -24,18 +24,16 @@ namespace CMDb.Controllers
         public async Task<IActionResult> Index()
         {
             var toplist = await cmdb.GetToplistWithRatingAndCount();
-            //var model = await openMovieDatabase.GetMovies(toplist);
-
             var model = await omdb.GetMovieViewModelIEnum(toplist);
             
-            
-            //    var model2 = new MovieRatingsViewModel()
-            //    {
-            //        MovieSite = model.Rating[0].Rating;
-            //};
-            //var model2 = new MovieRatingsViewModel(model)
-
             return View(model);
+        }
+        [HttpGet("Home/Test")]
+        public async Task<IActionResult> Test(string imdbId)
+        {
+            var test = await cmdb.GetDisLike(imdbId);
+
+            return View(test);
         }
     }
 }

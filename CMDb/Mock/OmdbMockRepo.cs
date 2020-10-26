@@ -19,15 +19,18 @@ namespace CMDb.Mock
         {
             basePath = $"{webHostEnvironment.ContentRootPath}\\Mock\\MockData\\";
         }
-
         
-
         public async Task<OmdbMovieDto> GetMovie(string testFile=null)
         {
             testFile = testFile ?? "joker.js";
             var result = FileHandler.GetTestData<OmdbMovieDto>(basePath + testFile);
             await Task.Delay(0);
             return result;
+        }
+
+        public Task<DetailPageViewModel> GetMovieByTitel(string titel)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<DetailPageViewModel> GetMovieViewModel(CmdbMovieDto cmdbDtoMovies)

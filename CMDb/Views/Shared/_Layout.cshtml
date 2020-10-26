@@ -28,6 +28,7 @@
     <![endif]-->
 </head>
 <body>
+    
     <!-- Page loader -->
     <div id="preloader"></div>
     <!-- header section start -->
@@ -45,12 +46,10 @@
                             <li>@Html.ActionLink("Movie", "Index", "Movie")</li>
                         </ul>
                     </div>
-                    <form action="#">
-                        <select>
-                            <option value="Movies">CMDb</option>
-                        </select>
-                        <input type="text" />
-                        <button><i class="icofont icofont-search"></i></button>
+                    <form asp-action="Search" asp-controller="Movie"  method="get">
+                        
+                        @Html.TextBox("titel")                        
+                        <button type="submit"><i class="icofont icofont-search"></i></button>
                     </form>
                 </div>
             </div>

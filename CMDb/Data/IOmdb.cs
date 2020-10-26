@@ -13,5 +13,6 @@ namespace CMDb.Data
 
         Task<MovieViewModel> GetMovieViewModelIEnum(IEnumerable<CmdbMovieDto> cmdbDtoMovies);
         Task<DetailPageViewModel> GetMovieViewModel(CmdbMovieDto cmdbDtoMovies);
+        Task<DetailPageViewModel> GetMovieByTitel(string titel);
     }
 }

@@ -24,18 +24,18 @@
                                         <br />
                                     </ul>
                                     }
-                                    <div class="author-review">
-                                        <i class="icofont icofont-star"></i>
-                                        <i class="icofont icofont-star"></i>
-                                        <i class="icofont icofont-star"></i>
-                                        <i class="icofont icofont-star"></i>
-                                        <i class="icofont icofont-star"></i>
-                                    </div>
+                                <div class="author-review">
+                                    <i class="icofont icofont-star"></i>
+                                    <i class="icofont icofont-star"></i>
+                                    <i class="icofont icofont-star"></i>
+                                    <i class="icofont icofont-star"></i>
+                                    <i class="icofont icofont-star"></i>
+                                </div>
                                     <h4>180k voters</h4>
                                 </div>
                                 <p>@Html.DisplayFor(model => model.Movies[i].Plot)</p>
-                                <div class="slide-trailor">                                    
-                                    <a class="theme-btn theme-btn2" href="#"><i class="icofont "></i> Go to movie</a>
+                                <div class="slide-trailor">
+                                    <h2>@Html.ActionLink(linkText: "Go to movie", actionName: "Detail", controllerName: "Movie", routeValues: Model.Movies[i])</h2>
                                 </div>
                             </div>
                         </div>
