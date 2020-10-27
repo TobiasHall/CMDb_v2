@@ -25,11 +25,12 @@ namespace CMDb.Models.ViewModels
 
 
         public List<MovieDetailDto> Movies { get; set; }
+        public List<MovieDetailDto> TopFourToT { get; set; }
 
 
         public MovieViewModel(List<MovieDetailDto> movies)
         {
-            this.Movies = movies;
+            this.Movies = movies;           
         }        
     }
 }

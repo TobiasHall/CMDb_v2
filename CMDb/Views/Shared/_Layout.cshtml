@@ -28,7 +28,7 @@
     <![endif]-->
 </head>
 <body>
-    
+
     <!-- Page loader -->
     <div id="preloader"></div>
     <!-- header section start -->
@@ -46,9 +46,9 @@
                             <li>@Html.ActionLink("Movie", "Index", "Movie")</li>
                         </ul>
                     </div>
-                    <form asp-action="Search" asp-controller="Movie"  method="get">
-                        
-                        @Html.TextBox("titel")                        
+                    <form asp-action="Search" asp-controller="Movie" method="get">
+
+                        @Html.TextBox("titel")
                         <button type="submit"><i class="icofont icofont-search"></i></button>
                     </form>
                 </div>
@@ -108,6 +108,9 @@
             </div>
         </div>
     </footer><!-- footer section end -->
+
+    @RenderSection("Scripts", required: false)
+
     <!-- jquery main JS -->
     <script src="/js/jquery.min.js"></script>
     <!-- Bootstrap JS -->

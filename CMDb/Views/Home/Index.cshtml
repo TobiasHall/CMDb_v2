@@ -1,112 +1,116 @@
 ﻿@model MovieViewModel
-     
-    <section class="hero-area" id="home">
-        <div class="container">
-            <div class="hero-area-slider">
-                @for (int i = 0; i < 3; i++)
-                {
-                    <div class="row hero-area-slide">
-                        <div class="col-lg-6 col-md-5">
-                            <div class="hero-area-content">
-                                <img src="@Html.DisplayFor(model => model.Movies[i].Poster)" alt="about" />
-                                <h2 class="news-date">Top 3 rated <br />on CMDb</h2>
-                            </div>
+@section scripts{
+    <script src="~/js/LikeDisLike.js"></script>
+}
+
+<section class="hero-area" id="home">
+    <div class="container">
+        <div class="hero-area-slider">
+            @for (int i = 0; i < 3; i++)
+            {
+                <div class="row hero-area-slide">
+                    <div class="col-lg-6 col-md-5">
+                        <div class="hero-area-content">
+                            <img src="@Html.DisplayFor(model => model.Movies[i].Poster)" alt="about" />
+                            <h2 class="news-date">Top 3 rated <br />on CMDb</h2>
                         </div>
-                        <div class="col-lg-6 col-md-7">
-                            <div class="hero-area-content pr-50">
-                                <h2>@Html.DisplayFor(model => model.Movies[i].Title)</h2>
-                                <div class="review">
-                                    @foreach (var rating in Model.Movies[i].Ratings)
-                                    {
-                                    <ul>
-                                        <h6>@Html.DisplayFor(item => rating.Source)</h6>
-                                        <p>@Html.DisplayFor(item => rating.Value)</p>
-                                        <br />
-                                    </ul>
-                                    }
-                                <div class="author-review">
-                                    <i class="icofont icofont-star"></i>
-                                    <i class="icofont icofont-star"></i>
-                                    <i class="icofont icofont-star"></i>
-                                    <i class="icofont icofont-star"></i>
-                                    <i class="icofont icofont-star"></i>
+                    </div>
+                    <div class="col-lg-6 col-md-7">
+                        <div class="hero-area-content pr-50">
+                            <h2>@Html.DisplayFor(model => model.Movies[i].Title)</h2>
+                            <div class="review">
+                                @foreach (var rating in Model.Movies[i].Ratings)
+                                {
+
+                                    <h6>@Html.DisplayFor(item => rating.Source)</h6>
+                                    <p>@Html.DisplayFor(item => rating.Value)</p>
+                                    <br />
+
+                                }
+                            <div class="like" >
+                                <i id="hejhej" class="icofont icofont-thumbs-up"onclick="likeOrDisLike(this)" >@Html.DisplayFor(item => item.Movies[i].NumberOfLikes)</i>
+                                <p id="test@(i)"></p>
+
+                            </div>
+                                <div class="dislike">
+                                    <i class="icofont icofont-thumbs-down" onclick="likeOrDisLike(this)">@Html.DisplayFor(item => item.Movies[i].NumberOfDislikes)</i>
+
                                 </div>
-                                    <h4>180k voters</h4>
-                                </div>
-                                <p>@Html.DisplayFor(model => model.Movies[i].Plot)</p>
-                                <div class="slide-trailor">
-                                    <h2>@Html.ActionLink(linkText: "Go to movie", actionName: "Detail", controllerName: "Movie", routeValues: Model.Movies[i])</h2>
-                                </div>
+                                <h4>CMDb rating</h4>
+                            </div>
+                            <p>@Html.DisplayFor(model => model.Movies[i].Plot)</p>
+                            <div class="slide-trailor">
+                                <h2>@Html.ActionLink(linkText: "Go to movie", actionName: "Detail", controllerName: "Movie", routeValues: Model.Movies[i])</h2>
                             </div>
                         </div>
                     </div>
-                 }
-            </div>
-            <div class="hero-area-thumb">
-                <div class="thumb-prev">
-                    <div class="row hero-area-slide">
-                        <div class="col-lg-6">
-                            <div class="hero-area-content">
-                                <img src="@Html.DisplayFor(model => model.Movies[1].Poster)" alt="about" />
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <p>@Html.DisplayFor(model => model.Movies[1].Plot)</p>
-                        </div>
-                    </div>
                 </div>
-                <div class="thumb-next">
-                    <div class="row hero-area-slide">
-                        <div class="col-lg-6">
-                            <div class="hero-area-content">
-                                <img src="@Html.DisplayFor(model => model.Movies[2].Poster)" alt="about" />
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <p>@Html.DisplayFor(model => model.Movies[2].Plot)</p>                                
-                         </div>
-                     </div>
-                </div>
-            </div>            
+            }
         </div>
-    </section>
+        <div class="hero-area-thumb">
+            <div class="thumb-prev">
+                <div class="row hero-area-slide">
+                    <div class="col-lg-6">
+                        <div class="hero-area-content">
+                            <img src="@Html.DisplayFor(model => model.Movies[1].Poster)" alt="about" />
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <p>@Html.DisplayFor(model => model.Movies[1].Plot)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="thumb-next">
+                <div class="row hero-area-slide">
+                    <div class="col-lg-6">
+                        <div class="hero-area-content">
+                            <img src="@Html.DisplayFor(model => model.Movies[2].Poster)" alt="about" />
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <p>@Html.DisplayFor(model => model.Movies[2].Plot)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <section class="portfolio-area pt-60">
-        <div class="container">
-            <h1><i class="icofont icofont-movie"></i> Best movies at CMDb</h1>
-            <br />
-            <hr />
-            <div class="row">
-                <div class="col-lg-9">
-                    <div class="row portfolio-item">
-                       @foreach (var movie in Model.Movies)
-                       {
-                           <div class="col-md-4 col-sm-6 soon released">
-                                <div class="single-portfolio">
-                                    <div class="single-portfolio-img">
+<section class="portfolio-area pt-60">
+    <div class="container">
+        <h1><i class="icofont icofont-movie"></i> Best movies at CMDb</h1>
+        <br />
+        <hr />
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="row portfolio-item">
+                    @foreach (var movie in Model.Movies)
+                    {
+                        <div class="col-md-4 col-sm-6 soon released">
+                            <div class="single-portfolio">
+                                <div class="single-portfolio-img">
 
-                                    </div>
-                                    <div class="portfolio-content">
-                                        <img src="@movie.Poster" alt="about" />
-                                        <h2>@Html.ActionLink(linkText: movie.Title, actionName: "Detail", controllerName: "Movie", routeValues: movie)</h2>
-                                        <div class="review">
-                                            <div class="author-review">
-                                                <i class="icofont icofont-star"></i>
-                                                <i class="icofont icofont-star"></i>
-                                                <i class="icofont icofont-star"></i>
-                                                <i class="icofont icofont-star"></i>
-                                                <i class="icofont icofont-star"></i>
-                                            </div>
-                                            <h4>180k voters</h4>
+                                </div>
+                                <div class="portfolio-content">
+                                    <img src="@movie.Poster" alt="about" />
+                                    <h2>@Html.ActionLink(linkText: movie.Title, actionName: "Detail", controllerName: "Movie", routeValues: movie)</h2>
+                                    <div class="review">
+                                        <div class="author-review">
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
                                         </div>
+                                        <h4>180k voters</h4>
                                     </div>
                                 </div>
                             </div>
-                        }
-                    </div>
+                        </div>
+                    }
                 </div>
-
             </div>
+
         </div>
-    </section>
-    
+    </div>
+</section>
