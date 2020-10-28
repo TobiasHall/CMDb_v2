@@ -1,6 +1,12 @@
 ﻿@model MovieViewModel
 @section scripts{
     <script src="~/js/LikeDisLike.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+     
+        
+        
+    </script>
 }
 
 <section class="hero-area" id="home">
@@ -27,14 +33,11 @@
                                     <br />
 
                                 }
-                            <div class="like" >
-                                <i id="hejhej" class="icofont icofont-thumbs-up"onclick="likeOrDisLike(this)" >@Html.DisplayFor(item => item.Movies[i].NumberOfLikes)</i>
-                                <p id="test@(i)"></p>
-
-                            </div>
+                                <div class="like">
+                                    <button class="icofont icofont-thumbs-up" onclick="likeMovie(this, '@Model.Movies[i].ImdbId');this.disabled = 'disabled'">@Html.DisplayFor(item => item.Movies[i].NumberOfDislikes)</button>
+                                </div>
                                 <div class="dislike">
-                                    <i class="icofont icofont-thumbs-down" onclick="likeOrDisLike(this)">@Html.DisplayFor(item => item.Movies[i].NumberOfDislikes)</i>
-
+                                    <button class="icofont icofont-thumbs-up" onclick="disLikeMovie(this, '@Model.Movies[i].ImdbId'); this.disabled = 'disabled'">@Html.DisplayFor(item => item.Movies[i].NumberOfDislikes)</button>                                    
                                 </div>
                                 <h4>CMDb rating</h4>
                             </div>
