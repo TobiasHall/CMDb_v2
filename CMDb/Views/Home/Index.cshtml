@@ -1,6 +1,7 @@
 ﻿@model MovieViewModel
 @section scripts{
     <script src="~/js/LikeDisLike.js"></script>
+    <script src="~/js/togglePlot.js"></script>
 }
 
 <section class="hero-area" id="home">
@@ -12,7 +13,7 @@
                     <div class="col-lg-6 col-md-5">
                         <div class="hero-area-content">
                             <img src="@Html.DisplayFor(model => model.Movies[i].Poster)" alt="about" />
-                            <h2 class="news-date">Top 3 rated <br />on CMDb</h2>
+                            <h2 class="news-date">Top 3 on<br /> CMDb</h2>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-7">
@@ -24,21 +25,21 @@
 
                                     <h6>@Html.DisplayFor(item => rating.Source)</h6>
                                     <p>@Html.DisplayFor(item => rating.Value)</p>
-                                    <br />
+
 
                                 }
-                            <div class="like" >
-                                <i id="hejhej" class="icofont icofont-thumbs-up"onclick="likeOrDisLike(this)" >@Html.DisplayFor(item => item.Movies[i].NumberOfLikes)</i>
-                                <p id="test@(i)"></p>
-
-                            </div>
-                                <div class="dislike">
-                                    <i class="icofont icofont-thumbs-down" onclick="likeOrDisLike(this)">@Html.DisplayFor(item => item.Movies[i].NumberOfDislikes)</i>
-
+                                <h6>CMDb rating</h6>
+                                <div class="like">
+                                    <button id="btn-like" class="icofont icofont-thumbs-up" onclick="likeMovie(this, '@Model.Movies[i].ImdbId');this.disabled = true">@Html.DisplayFor(item => item.Movies[i].NumberOfLikes)</button>
                                 </div>
-                                <h4>CMDb rating</h4>
+                                <div class="dislike">
+                                    <button id="btn-dislike" class="icofont icofont-thumbs-down" onclick="disLikeMovie(this, '@Model.Movies[i].ImdbId'); this.disabled = true">@Html.DisplayFor(item => item.Movies[i].NumberOfDislikes)</button>
+                                </div>
                             </div>
-                            <p>@Html.DisplayFor(model => model.Movies[i].Plot)</p>
+                            <div class="plot-div">
+                                @Html.DisplayFor(model => model.Movies[i].Plot)
+                            </div>
+                            <a class="more" href="#">Read more </a>
                             <div class="slide-trailor">
                                 <h2>@Html.ActionLink(linkText: "Go to movie", actionName: "Detail", controllerName: "Movie", routeValues: Model.Movies[i])</h2>
                             </div>

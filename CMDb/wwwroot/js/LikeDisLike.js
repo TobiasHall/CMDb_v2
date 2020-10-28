@@ -1,13 +1,20 @@
-﻿function likeOrDisLike(clickedElement) {
-    clickedElement = clickedElement.textContent++
+﻿function likeMovie(clickedElement, imdbId) {
     
-    //const linkToSvt = document.querySelector('#hejhej')
-    //linkToSvt.addEventListener('click', function (event) {
-    //    event.preventDefault()
-    //}
+    //const cmdb = new XMLHttpRequest()
+    //const statement = 'like'
+    //const url = `https://localhost:44313/api/${imdbId}/${statement}`
+    //cmdb.open("Get", url, true)
+    //cmdb.send()
+    clickedElement = clickedElement.textContent++
+    const button = document.querySelector('#btn-dislike')
+    button.disabled = true
+}
+function disLikeMovie(clickedElement, imdbId) {
 
     //const cmdb = new XMLHttpRequest()
-    //const url = `https://localhost:44313/api/ ${ imdbid } /${ statement }`
-    //cmdb.open("Get", url)
+    //const statement = 'dislike'
+    //const url = `https://localhost:44313/api/${imdbId}/${statement}`
+    //cmdb.open("Get", url, true)
     //cmdb.send()
+    clickedElement = clickedElement.textContent++
 }
