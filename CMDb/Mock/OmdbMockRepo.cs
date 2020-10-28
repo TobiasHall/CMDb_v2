@@ -28,9 +28,13 @@ namespace CMDb.Mock
             return result;
         }
 
-        public Task<DetailPageViewModel> GetMovieByTitel(string titel)
+        public async Task<DetailPageViewModel> GetMovieByTitel(string titel)
         {
-            throw new NotImplementedException();
+            string movieId = $"?s={titel}";
+            string testfile = "joker.js";
+            var result = FileHandler.GetTestData<MovieDetailDto>(basePath + testfile);
+            await Task.Delay(0);
+            return new DetailPageViewModel(result);
         }
 
         public async Task<DetailPageViewModel> GetMovieViewModel(CmdbMovieDto cmdbDtoMovies)

@@ -27,6 +27,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
+
 <body>
 
     <!-- Page loader -->
@@ -45,12 +46,14 @@
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("Movie", "Index", "Movie")</li>
                         </ul>
-                    </div>
-                    <form asp-action="Search" asp-controller="Movie" method="get">
 
-                        @Html.TextBox("titel")
-                        <button type="submit"><i class="icofont icofont-search"></i></button>
+                    </div>
+                    <form id="testar">
+                        <input type="search" name="search" id="search">
+                        <input type="submit" value="Search" id="submit">
                     </form>
+                    <div id="movieInformation">
+                    </div>
                 </div>
             </div>
         </div>
@@ -108,6 +111,8 @@
             </div>
         </div>
     </footer><!-- footer section end -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="~/js/JavaScript.js"></script>
 
     @RenderSection("Scripts", required: false)
 

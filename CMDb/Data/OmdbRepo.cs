@@ -32,7 +32,7 @@ namespace CMDb.Data
         }
         public async Task<DetailPageViewModel> GetMovieByTitel(string titel)
         {
-            string movieId = $"?t={titel}";
+            string movieId = $"?s={titel}";
             var result = await apiClient.GetAsync<MovieDetailDto>($"{baseUrl}{movieId}{key}");
             
             return new DetailPageViewModel(result);            
