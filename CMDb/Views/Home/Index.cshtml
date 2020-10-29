@@ -41,7 +41,7 @@
                             </div>
                             <a class="more" href="#">Read more </a>
                             <div class="slide-trailor">
-                                <h2>@Html.ActionLink(linkText: "Go to movie", actionName: "Detail", controllerName: "Movie", routeValues: Model.Movies[i])</h2>
+                                <h2>@Html.ActionLink("Go to movie", "Detail", "Movie", new {id = Model.Movies[i].Title })</h2>
                             </div>
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                                 </div>
                                 <div class="portfolio-content">
                                     <img src="@movie.Poster" alt="about" />
-                                    <h2>@Html.ActionLink(linkText: movie.Title, actionName: "Detail", controllerName: "Movie", routeValues: movie)</h2>
+                                    <h2>@Html.ActionLink(movie.Title, "Detail", "Movie", new {id = movie.ImdbId })</h2>
                                     <div class="review">
                                         <div class="author-review">
                                             <i class="icofont icofont-star"></i>

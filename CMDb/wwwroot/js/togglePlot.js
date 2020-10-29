@@ -4,10 +4,22 @@
     $('.plot-div').animate({
         'height': '100%'
     })
+    $('.more').text('Collapse')
+    $('.more').removeClass('more').addClass('collapse')
+    
 });
 
-$(document).click(function () {
+
+$('.collapse').click(function () {
     $('.plot-div').animate({
         'height': '50px'
     })
 })
+
+
+
+//$(document).click(function () {
+//    $('.plot-div').animate({
+//        'height': '50px'
+//    })
+//})

@@ -29,9 +29,9 @@ namespace CMDb.Controllers
             return View(model);
         }
         [HttpGet("Home/Test")]
-        public async Task<IActionResult> Test(string imdbId)
+        public async Task<IActionResult> Test(string id)
         {
-            var test = await cmdb.GetDisLike(imdbId);
+            var test = await cmdb.GetDisLike(id);
 
             return View(test);
         }
