@@ -1,0 +1,41 @@
+﻿@model SearchPageViewModel
+
+<section class="portfolio-area pt-60">
+    <div class="container">
+        <h1><i class="icofont icofont-movie"></i> Best movies at CMDb</h1>
+        <br />
+        <hr />
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="row portfolio-item">
+                    @foreach (var movie in Model.Searches)
+                    {
+                        <div class="col-md-4 col-sm-6 soon released">
+                            <div class="single-portfolio">
+                                <div class="single-portfolio-img">
+
+                                </div>
+                                <div class="portfolio-content">
+                                    <img src="@movie.Poster" alt="about" />
+                                    <h2>@Html.ActionLink(linkText: movie.Title, actionName: "Detail", controllerName: "Movie", routeValues: movie)</h2>
+                                    <p>@movie.Year</p>
+                                    <div class="review">
+                                        <div class="author-review">
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                        </div>
+                                        <h4>180k voters</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

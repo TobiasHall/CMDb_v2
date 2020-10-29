@@ -63,7 +63,13 @@ namespace CMDb.Data
 
         public async Task<CmdbMovieDto> GetMovie(string id)
         {
-            return await apiClient.GetAsync<CmdbMovieDto>($"{baseUrl}Movie/{id}");
+              var test =  await apiClient.GetAsync<CmdbMovieDto>($"{baseUrl}Movie/{id}");
+
+            if (test == null)
+            {
+                return new CmdbMovieDto() { ImdbId = id };
+            }
+            else return test;
         }
         public async Task<CmdbMovieDto> GetLike(string imdbId)
         {

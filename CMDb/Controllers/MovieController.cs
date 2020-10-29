@@ -33,7 +33,7 @@ namespace CMDb.Controllers
         {//TODO:Lös så att det blir snyggare här, så att båda detail kan ta in en sträng
             //Gå det att lösa med att ha en bool som inparameter också
             var model = await cmdb.GetMovie(imdbId);
-            var model2 = await omdb.GetMovieViewModel(model);
+            var model2 = await omdb.GetDetailPageViewModel(model);
 
             return View(model2);
         }
@@ -45,5 +45,6 @@ namespace CMDb.Controllers
 
             return View("detail", model);
         }
+
     }
 }

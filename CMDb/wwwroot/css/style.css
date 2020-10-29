@@ -48,6 +48,16 @@ div ul li{
     overflow: hidden;
 }
 
+#movieInformation {
+    position: absolute;
+    top: 50px;
+    right: 250px;
+    border: 1px solid #CC1F12;
+    background: #109C03;
+    width: 20%;
+    border-radius: 2px;
+    z-index: 100;
+}
 /*----------------------------
 ---------- RESET CSS ---------
 ----------------------------*/
@@ -58,7 +68,7 @@ h4,
 h5,
 h6 {
     font-weight: 500;
-	color: #fff;
+    color: #fff;
 }
 h1,
 h2,

@@ -49,12 +49,11 @@
                         </ul>
 
                     </div>
-                    <form id="testar">
-                        <input type="search" name="search" id="search">
-                        <input type="submit" value="Search" id="submit">
-                    </form>
-                    <div id="movieInformation">
-                    </div>
+                        <form asp-action="Search" asp-controller="Home" method="get">
+
+                            @Html.TextBox("titel")
+                            <button type="submit"><i class="icofont icofont-search"></i></button>
+                        </form>
                 </div>
             </div>
         </div>
