@@ -65,11 +65,8 @@ namespace CMDb.Data
         }
         public async Task<SearchPageViewModel> GetMovieSearch(string titel)
         {
-
-
                 string movieId = $"?s={titel}";
-                var result = await apiClient.GetAsync<SearchDetailDto>($"{baseUrl}{movieId}{key}");
-               
+                var result = await apiClient.GetAsync<SearchDetailDto>($"{baseUrl}{movieId}{key}");               
 
             return new SearchPageViewModel(result);
         }

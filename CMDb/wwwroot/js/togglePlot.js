@@ -1,21 +1,33 @@
-﻿$('.more').click(function (e) {
+﻿//$('.more').click(function (e) {
+//    e.stopPropagation();
+//    e.preventDefault();
+//    $('.plot-div').animate({
+//        'height': '100%'
+//    })
+//    $('.more').text('Collapse')
+    
+    
+//});
+
+$('.more').click(function (e) {
     e.stopPropagation();
     e.preventDefault();
-    $('.plot-div').animate({
-        'height': '100%'
-    })
-    $('.more').text('Collapse')
-    $('.more').removeClass('more').addClass('collapse')
-    
+    const link = document.querySelector('.more')
+    var h = this.scrollHeight;
+    if (link.text == 'Read more') {
+        $('.plot-div').animate({
+            'height': '100%'
+        })
+        $('.more').text('Collapse')
+    }
+    else {
+        $('.plot-div').animate({
+            'height': '50px'
+        })
+        $('.more').text('Read more')
+
+    }
 });
-
-
-$('.collapse').click(function () {
-    $('.plot-div').animate({
-        'height': '50px'
-    })
-})
-
 
 
 //$(document).click(function () {

@@ -56,14 +56,12 @@ namespace CMDb.Mock
             
         }
 
-        Task<SearchPageViewModel> GetMovieSearch(string titel)
+        public async Task<SearchPageViewModel> GetMovieSearch(string titel)
         {
-            throw new NotImplementedException();
-        }
-
-        Task<SearchPageViewModel> IOmdb.GetMovieSearch(string titel)
-        {
-            throw new NotImplementedException();
+            string testFile = "SearchResultBatman.json";
+            var result = FileHandler.GetTestData<SearchDetailDto>(basePath + testFile);
+            await Task.Delay(0);
+            return new SearchPageViewModel(result);
         }
     }
 }
