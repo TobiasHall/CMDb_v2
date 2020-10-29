@@ -28,7 +28,7 @@ namespace CMDb.Mock
             return result;
         }
 
-        public async Task<DetailPageViewModel> GetMovieByTitel(string title)
+        public async Task<DetailPageViewModel> GetMovieById(string title)
         {            
             string testfile = "joker.json";
             var result = FileHandler.GetTestData<MovieDetailDto>(basePath + testfile);
