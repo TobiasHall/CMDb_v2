@@ -35,5 +35,12 @@ namespace CMDb.Controllers
 
             return View(test);
         }
+        [HttpGet("Home/Search")]
+        public async Task<IActionResult> Search(string titel) 
+        {
+
+            var test = await omdb.GetMovieSearch(titel);
+            return View(test);
+        }
     }
 }

@@ -37,7 +37,8 @@ namespace CMDb.Mock
             return new DetailPageViewModel(result);
         }
 
-        public async Task<DetailPageViewModel> GetMovieViewModel(CmdbMovieDto cmdbDtoMovies)
+
+        public async Task<DetailPageViewModel> GetDetailPageViewModel(CmdbMovieDto cmdbDtoMovies)
         {
             string testFile = "DetailPageVM.js";
             var result = FileHandler.GetTestData<MovieDetailDto>(basePath + testFile);
@@ -54,6 +55,16 @@ namespace CMDb.Mock
             await Task.Delay(0);
             return new MovieViewModel(movies);
             
+        }
+
+        Task<SearchPageViewModel> GetMovieSearch(string titel)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<SearchPageViewModel> IOmdb.GetMovieSearch(string titel)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -32,7 +32,7 @@ namespace CMDb.Data
         }
         public async Task<DetailPageViewModel> GetMovieByTitel(string titel)
         {
-            string movieId = $"?s={titel}";
+            string movieId = $"?t={titel}";
             var result = await apiClient.GetAsync<MovieDetailDto>($"{baseUrl}{movieId}{key}");
             
             return new DetailPageViewModel(result);            
@@ -54,7 +54,7 @@ namespace CMDb.Data
                 return new MovieViewModel(movies);         
         }
 
-        public async Task<DetailPageViewModel> GetMovieViewModel(CmdbMovieDto cmdbDtoMovies)
+        public async Task<DetailPageViewModel> GetDetailPageViewModel(CmdbMovieDto cmdbDtoMovies)
         {
             string movieId = $"?i={cmdbDtoMovies.ImdbId}";
             var result = await apiClient.GetAsync<MovieDetailDto>($"{baseUrl}{movieId}{key}");
@@ -62,6 +62,16 @@ namespace CMDb.Data
             result.NumberOfDislikes = cmdbDtoMovies.NumberOfDislikes;
 
             return new DetailPageViewModel(result);
+        }
+        public async Task<SearchPageViewModel> GetMovieSearch(string titel)
+        {
+
+
+                string movieId = $"?s={titel}";
+                var result = await apiClient.GetAsync<SearchDetailDto>($"{baseUrl}{movieId}{key}");
+               
+
+            return new SearchPageViewModel(result);
         }
     }
 }
