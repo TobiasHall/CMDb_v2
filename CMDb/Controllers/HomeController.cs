@@ -36,10 +36,10 @@ namespace CMDb.Controllers
             return View(test);
         }
         [HttpGet("Home/Search")]
-        public async Task<IActionResult> Search(string titel) 
+        public async Task<IActionResult> Search(string id) 
         {
 
-            var test = await omdb.GetMovieSearch(titel);
+            var test = await omdb.GetMovieSearch(id);
             return View(test);
         }
     }

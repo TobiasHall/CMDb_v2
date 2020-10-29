@@ -38,13 +38,13 @@ namespace CMDb.Controllers
             return View(model2);
         }
         [HttpGet("Movie/Search")]
-        public async Task<IActionResult> Search(string imdbId)
+        public async Task<IActionResult> Search(string id)
         {
-            var model2 = await cmdb.GetMovie(imdbId);
+            var model2 = await cmdb.GetMovie(id);
 
             if (model2 == null)
             {
-                var model = await omdb.GetMovieById(imdbId);
+                var model = await omdb.GetMovieById(id);
                 return View("detail", model);
             }
             else
