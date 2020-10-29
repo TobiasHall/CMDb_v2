@@ -22,16 +22,15 @@ namespace CMDb.Mock
         
         public async Task<OmdbMovieDto> GetMovie(string testFile=null)
         {
-            testFile = testFile ?? "joker.js";
+            testFile = testFile ?? "joker.json";
             var result = FileHandler.GetTestData<OmdbMovieDto>(basePath + testFile);
             await Task.Delay(0);
             return result;
         }
 
-        public async Task<DetailPageViewModel> GetMovieByTitel(string titel)
-        {
-            string movieId = $"?s={titel}";
-            string testfile = "joker.js";
+        public async Task<DetailPageViewModel> GetMovieByTitel(string title)
+        {            
+            string testfile = "joker.json";
             var result = FileHandler.GetTestData<MovieDetailDto>(basePath + testfile);
             await Task.Delay(0);
             return new DetailPageViewModel(result);
@@ -39,7 +38,7 @@ namespace CMDb.Mock
 
         public async Task<DetailPageViewModel> GetMovieViewModel(CmdbMovieDto cmdbDtoMovies)
         {
-            string testFile = "DetailPageVM.js";
+            string testFile = "DetailPageVM.json";
             var result = FileHandler.GetTestData<MovieDetailDto>(basePath + testFile);
             await Task.Delay(0);
             return new DetailPageViewModel(result);
@@ -49,7 +48,7 @@ namespace CMDb.Mock
         {
             List<MovieDetailDto> movies;
 
-            var listOfMovies = FileHandler.GetTestData<List<MovieDetailDto>>(basePath + "MovieInfo.js");
+            var listOfMovies = FileHandler.GetTestData<List<MovieDetailDto>>(basePath + "MovieInfo.json");
             movies = listOfMovies;
             await Task.Delay(0);
             return new MovieViewModel(movies);

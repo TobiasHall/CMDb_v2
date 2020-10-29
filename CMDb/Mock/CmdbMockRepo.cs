@@ -22,7 +22,7 @@ namespace CMDb.Mock
 
        public async Task<IEnumerable<CmdbMovieDto>> GetToplistWithRatingAndCount()
         {
-            string testFile = "toplist.js";
+            string testFile = "toplist.json";
             var result = FileHandler.GetTestData<IEnumerable<CmdbMovieDto>>(basePath + testFile);
             await Task.Delay(0);
             return result;
@@ -30,7 +30,7 @@ namespace CMDb.Mock
 
         public async Task<IEnumerable<CmdbMovieDto>> GetToplistByPopularitAndCount()
         {
-            string testFile = "toplist.js";
+            string testFile = "toplist.json";
             var result = FileHandler.GetTestData<IEnumerable<CmdbMovieDto>>(basePath + testFile);
             await Task.Delay(0);
             return result;
@@ -38,7 +38,7 @@ namespace CMDb.Mock
 
         public async Task<CmdbMovieDto> GetMovie(string id)
         {
-            string testFile = "cmdbMovie.js";
+            string testFile = "cmdbMovie.json";
             var result = FileHandler.GetTestData<CmdbMovieDto>(basePath + testFile);
             await Task.Delay(0);
             return result;

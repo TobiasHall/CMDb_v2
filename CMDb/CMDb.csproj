@@ -5,13 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Mock\MockData\Movies.js" />
-    <None Remove="Mock\MockData\Toplist.js" />
+    <Content Remove="Mock\MockData\cmdbMovie.json" />
+    <Content Remove="Mock\MockData\DetailPageVM.json" />
+    <Content Remove="Mock\MockData\joker.json" />
+    <Content Remove="Mock\MockData\MovieInfo.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Mock\MockData\movies.js" />
-    <Content Include="Mock\MockData\toplist.js" />
+    <None Include="Mock\MockData\cmdbMovie.json" />
+    <None Include="Mock\MockData\DetailPageVM.json" />
+    <None Include="Mock\MockData\joker.json" />
+    <None Include="Mock\MockData\MovieInfo.json" />
   </ItemGroup>
 
   <ItemGroup>
