@@ -30,8 +30,7 @@ namespace CMDb.Controllers
         }
         [HttpGet("Movie/Detail")]
         public async Task<IActionResult> Detail(string id)
-        {//TODO:Lös så att det blir snyggare här, så att båda detail kan ta in en sträng
-            //Gå det att lösa med att ha en bool som inparameter också
+        {
             var model = await cmdb.GetMovie(id);
             var model2 = await omdb.GetDetailPageViewModel(model);
 
