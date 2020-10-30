@@ -28,7 +28,7 @@
 
                                 </div>
                                 <div class="portfolio-content">
-                                    <img src="@movie.Poster" alt="about" />
+                                    <img src="@movie.Poster" alt="about" onerror="this.src='/img/image-not-found.jpg'"/>
                                     <h2>@Html.ActionLink(movie.Title, "Search", "Movie", new {id = movie.ImdbID})</h2>
                                     <p>@movie.Year</p>
                                     <div class="review">

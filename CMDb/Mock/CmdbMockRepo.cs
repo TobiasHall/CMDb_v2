@@ -20,7 +20,7 @@ namespace CMDb.Mock
             basePath = $"{webHostEnvironment.ContentRootPath}\\Mock\\MockData\\";
         }
 
-       public async Task<IEnumerable<CmdbMovieDto>> GetToplistWithRatingAndCount()
+       public async Task<IEnumerable<CmdbMovieDto>> GetToplistWithRatingAndCount(int number)
         {
             string testFile = "toplist.json";
             var result = FileHandler.GetTestData<IEnumerable<CmdbMovieDto>>(basePath + testFile);

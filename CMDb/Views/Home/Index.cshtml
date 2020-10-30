@@ -12,8 +12,10 @@
                 <div class="row hero-area-slide">
                     <div class="col-lg-6 col-md-5">
                         <div class="hero-area-content">
-                            <img src="@Html.DisplayFor(model => model.Movies[i].Poster)" alt="about" />
-                            <h2 class="news-date">Top 3 on<br /> CMDb</h2>
+                            <a href="/Movie/Detail?id=@Model.Movies[i].ImdbId">
+                                <img src="@Html.DisplayFor(model => model.Movies[i].Poster)" alt="about" onerror="this.src='/img/image-not-found.jpg'"/>
+                                <h2 class="news-date">Top 3 on<br /> CMDb</h2>
+                            </a>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-7">
@@ -22,19 +24,14 @@
                             <div class="review">
                                 @foreach (var rating in Model.Movies[i].Ratings)
                                 {
-
                                     <h6>@Html.DisplayFor(item => rating.Source)</h6>
                                     <p>@Html.DisplayFor(item => rating.Value)</p>
-
-
                                 }
                                 <h6>CMDb rating</h6>
-                                <div class="like">
-                                    <button id="btn-like" class="icofont icofont-thumbs-up" onclick="likeMovie(this, '@Model.Movies[i].ImdbId');this.disabled = true">@Html.DisplayFor(item => item.Movies[i].NumberOfLikes)</button>
-                                </div>
-                                <div class="dislike">
-                                    <button id="btn-dislike" class="icofont icofont-thumbs-down" onclick="disLikeMovie(this, '@Model.Movies[i].ImdbId'); this.disabled = true">@Html.DisplayFor(item => item.Movies[i].NumberOfDislikes)</button>
-                                </div>
+                                <div class="likeDisLikeButtons">
+                                    <button id="like" name="@Model.Movies[i].ImdbId" class="icofont icofont-thumbs-up">@Html.DisplayFor(item => item.Movies[i].NumberOfLikes)</button>
+                                    <button id="dislike" name="@Model.Movies[i].ImdbId" class="icofont icofont-thumbs-down">@Html.DisplayFor(item => item.Movies[i].NumberOfDislikes)</button>
+                                </div>                                
                             </div>
                             <div class="plot-div">
                                 @Html.DisplayFor(model => model.Movies[i].Plot)
@@ -53,7 +50,7 @@
                 <div class="row hero-area-slide">
                     <div class="col-lg-6">
                         <div class="hero-area-content">
-                            <img src="@Html.DisplayFor(model => model.Movies[1].Poster)" alt="about" />
+                            <img src="@Html.DisplayFor(model => model.Movies[1].Poster)" alt="about" onerror="this.src='/img/image-not-found.jpg'"/>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -65,7 +62,7 @@
                 <div class="row hero-area-slide">
                     <div class="col-lg-6">
                         <div class="hero-area-content">
-                            <img src="@Html.DisplayFor(model => model.Movies[2].Poster)" alt="about" />
+                            <img src="@Html.DisplayFor(model => model.Movies[2].Poster)" alt="about" onerror="this.src='/img/image-not-found.jpg'"/>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -85,29 +82,30 @@
         <div class="row">
             <div class="col-lg-9">
                 <div class="row portfolio-item">
-                    @foreach (var movie in Model.Movies)
+                    @for (int i = 0; i < Model.Movies.Count; i++)
                     {
-                        <div class="col-md-4 col-sm-6 soon released">
-                            <div class="single-portfolio">
-                                <div class="single-portfolio-img">
-
-                                </div>
-                                <div class="portfolio-content">
-                                    <img src="@movie.Poster" alt="about" />
-                                    <h2>@Html.ActionLink(movie.Title, "Detail", "Movie", new {id = movie.ImdbId })</h2>
-                                    <div class="review">
-                                        <div class="author-review">
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
+                        if (i > 2)
+                        {
+                            <div class="col-md-4 col-sm-6 soon released">
+                                <div class="single-portfolio">
+                                    <div class="single-portfolio-img">
+                                        <a href="/Movie/Detail?id=@Model.Movies[i].ImdbId">
+                                            <img src="@Html.DisplayFor(model => Model.Movies[i].Poster)" alt="about" onerror="this.src='/img/image-not-found.jpg'"/>
+                                        </a>
+                                    </div>
+                                    <div class="portfolio-content">
+                                        <h4>@Html.ActionLink(Model.Movies[i].Title, "Detail", "Movie", new { id = Model.Movies[i].ImdbId })</h4>
+                                        <div class="review">
+                                            <h6>CMDb rating</h6>
+                                            <div class="likeDisLikeButtons">
+                                                <button id="like" name="@Model.Movies[i].ImdbId" class="icofont icofont-thumbs-up">@Html.DisplayFor(item => Model.Movies[i].NumberOfLikes)</button>
+                                                <button id="dislike" name="@Model.Movies[i].ImdbId" class="icofont icofont-thumbs-down">@Html.DisplayFor(item => Model.Movies[i].NumberOfDislikes)</button>
+                                            </div>
                                         </div>
-                                        <h4>180k voters</h4>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        }
                     }
                 </div>
             </div>
@@ -115,3 +113,5 @@
         </div>
     </div>
 </section>
+
+

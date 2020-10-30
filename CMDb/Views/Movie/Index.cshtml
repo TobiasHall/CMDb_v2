@@ -23,12 +23,11 @@
                         {
                             @if (i > 2)
                             {
-
                                 <div class="col-md-4 col-sm-6 soon released">
                                     <div class="single-portfolio">
                                         <div class="single-portfolio-img">
-                                            <a href="#">
-                                                <img src="@Html.DisplayFor(model => model.Movies[i].Poster)" alt="about" />
+                                            <a href="/Movie/Detail?id=@Model.Movies[i].ImdbId">
+                                                <img src="@Html.DisplayFor(model => model.Movies[i].Poster)" alt="about" onerror="this.src='/img/image-not-found.jpg'"/>
                                             </a>
                                         </div>
                                         <div class="portfolio-content">

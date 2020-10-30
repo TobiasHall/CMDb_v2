@@ -13,6 +13,6 @@ namespace CMDb.Data
         Task<CmdbMovieDto> GetLike(string imdbId);
         Task<CmdbMovieDto> GetMovie(string id);
         Task<IEnumerable<CmdbMovieDto>> GetToplistByPopularitAndCount();
-        Task<IEnumerable<CmdbMovieDto>> GetToplistWithRatingAndCount();
+        Task<IEnumerable<CmdbMovieDto>> GetToplistWithRatingAndCount(int number);
     }
 }

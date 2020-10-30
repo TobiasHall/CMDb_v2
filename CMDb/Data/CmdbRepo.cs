@@ -27,12 +27,12 @@ namespace CMDb.Data
             this.apiClient = apiClient;
             //this.configuration = configuration;
         }
-        public async Task<IEnumerable<CmdbMovieDto>> GetToplistWithRatingAndCount()
+        public async Task<IEnumerable<CmdbMovieDto>> GetToplistWithRatingAndCount(int number)
         {
             
             using (HttpClient client = new HttpClient())
             {
-                string endpoint = $"{baseUrl}{rating}&count=10";
+                string endpoint = $"{baseUrl}{rating}&count={number}";
                 
 
                 return await apiClient.GetAsync<IEnumerable<CmdbMovieDto>>(endpoint);
