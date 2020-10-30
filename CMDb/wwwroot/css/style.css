@@ -908,12 +908,13 @@ hr {
 }
 
 .transformers-left {
+    float: none;
     color: #eb315a;
     min-width: 100px;
 }
 
 .transformers-content ul li {
-    display: flex;
+    float: none;
     margin-top: 12px;
     font-weight: 300;
 }

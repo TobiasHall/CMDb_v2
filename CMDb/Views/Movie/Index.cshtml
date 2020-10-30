@@ -33,14 +33,11 @@
                                         <div class="portfolio-content">
                                             <h2>@Html.DisplayFor(model => model.Movies[i].Title)</h2>
                                             <div class="review">
-                                                <div class="author-review">
-                                                    <i class="icofont icofont-star"></i>
-                                                    <i class="icofont icofont-star"></i>
-                                                    <i class="icofont icofont-star"></i>
-                                                    <i class="icofont icofont-star"></i>
-                                                    <i class="icofont icofont-star"></i>
+                                                <h6>CMDb rating</h6>
+                                                <div class="likeDisLikeButtons">
+                                                    <button id="like" name="@Model.Movies[i].ImdbId" class="icofont icofont-thumbs-up">@Html.DisplayFor(item => item.Movies[i].NumberOfLikes)</button>
+                                                    <button id="dislike" name="@Model.Movies[i].ImdbId" class="icofont icofont-thumbs-down">@Html.DisplayFor(item => item.Movies[i].NumberOfDislikes)</button>
                                                 </div>
-                                                <h4>180k voters</h4>
                                             </div>
                                         </div>
                                     </div>
