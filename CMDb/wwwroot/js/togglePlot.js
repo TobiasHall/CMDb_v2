@@ -1,37 +1,15 @@
-﻿//$('.more').click(function (e) {
-//    e.stopPropagation();
-//    e.preventDefault();
-//    $('.plot-div').animate({
-//        'height': '100%'
-//    })
-//    $('.more').text('Collapse')
-    
-    
-//});
+﻿const moreBtn = document.querySelector('.more')
+const plotDiv = document.querySelector('.plot-div')
 
-$('.more').click(function (e) {
-    e.stopPropagation();
-    e.preventDefault();
-    const link = document.querySelector('.more')
-    var h = this.scrollHeight;
-    if (link.text == 'Read more') {
-        $('.plot-div').animate({
-            'height': '100%'
-        })
-        $('.more').text('Collapse')
+moreBtn.addEventListener('click', function (event) {
+    event.stopPropagation()
+    event.preventDefault()
+    if (moreBtn.text == 'Read more') {
+        plotDiv.style.height = '100%'
+        moreBtn.textContent = 'Collapse'
     }
     else {
-        $('.plot-div').animate({
-            'height': '50px'
-        })
-        $('.more').text('Read more')
-
+        plotDiv.style.height = '50px'
+        moreBtn.textContent = 'Read more'
     }
-});
-
-
-//$(document).click(function () {
-//    $('.plot-div').animate({
-//        'height': '50px'
-//    })
-//})
+})

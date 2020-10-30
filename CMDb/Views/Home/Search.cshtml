@@ -14,7 +14,11 @@
 
 <section class="portfolio-area pt-60">
     <div class="container">
-        <h1><i class="icofont icofont-movie"></i> Best movies at CMDb</h1>
+        <div class="col-lg-6 text-center text-lg-left">
+            <div class="section-title">
+                <h1><i class="icofont icofont-movie"></i>What movie did you mean? </h1>
+            </div>
+        </div>
         <br />
         <hr />
         <div class="row">
@@ -25,17 +29,15 @@
                         <div class="col-md-4 col-sm-6 soon released">
                             <div class="single-portfolio">
                                 <div class="single-portfolio-img">
-
+                                    <a href="/Movie/Detail?id=@movie.ImdbID">
+                                        <img src="@Html.DisplayFor(model =>movie.Poster)" alt="about" onerror="this.src='/img/image-not-found.jpg'" />
+                                    </a>
                                 </div>
-                                <div class="portfolio-content">
-                                    <img src="@movie.Poster" alt="about" onerror="this.src='/img/image-not-found.jpg'"/>
-                                    <h2>@Html.ActionLink(movie.Title, "Search", "Movie", new {id = movie.ImdbID})</h2>
+                                <div class="portfolio-content">                                    
+                                    <h4>@Html.ActionLink(movie.Title, "Search", "Movie", new {id = movie.ImdbID})</h4>
                                     <p>@movie.Year</p>
                                     <div class="review">
-                                        <div class="author-review">
-                                            
-                                        </div>
-                                        <h4>180k voters</h4>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -43,7 +45,6 @@
                     }
                 </div>
             </div>
-
         </div>
     </div>
 </section>

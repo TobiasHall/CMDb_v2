@@ -11,7 +11,7 @@
         </div>
     </section>
 
-    <section class="portfolio-area pt-60">
+    @*<section class="portfolio-area pt-60">
         <div class="container">
             <h1><i class="icofont icofont-movie"></i> Populary movies</h1>
             <br />
@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-lg-9">
                     <div class="row portfolio-item">
-                        @for (int i = 0; i < 10; i++)
+                        @for (int i = 0; i < Model.Movies.Count; i++)
                         {
                             @if (i > 2)
                             {
@@ -51,6 +51,49 @@
                     </div>
                 </div>
 
+            </div>
+        </div>
+    </section>*@
+
+
+
+
+    <section class="portfolio-area pt-60">
+        <div class="container">
+            <div class="col-lg-6 text-center text-lg-left">
+                <div class="section-title">
+                    <h1><i class="icofont icofont-movie"></i> Populary movies at CMDb</h1>
+                </div>
+            </div>
+            <br />
+            <hr />
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="row portfolio-item">
+                        @for (int i = 0; i < Model.Movies.Count; i++)
+                        {
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="single-portfolio">
+                                        <div class="single-portfolio-img">
+                                            <a href="/Movie/Detail?id=@Model.Movies[i].ImdbId">
+                                                <img src="@Html.DisplayFor(model => Model.Movies[i].Poster)" alt="about" onerror="this.src='/img/image-not-found.jpg'" />
+                                            </a>
+                                        </div>
+                                        <div class="portfolio-content">
+                                            <h4>@Html.ActionLink(Model.Movies[i].Title, "Detail", "Movie", new { id = Model.Movies[i].ImdbId })</h4>
+                                            <div class="review">
+                                                <h6>CMDb rating</h6>
+                                                <div class="likeDisLikeButtons">
+                                                    <button id="like" name="@Model.Movies[i].ImdbId" class="icofont icofont-thumbs-up">@Html.DisplayFor(item => Model.Movies[i].NumberOfLikes)</button>
+                                                    <button id="dislike" name="@Model.Movies[i].ImdbId" class="icofont icofont-thumbs-down">@Html.DisplayFor(item => Model.Movies[i].NumberOfDislikes)</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                         
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     </section>
