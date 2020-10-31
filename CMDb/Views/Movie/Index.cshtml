@@ -72,7 +72,7 @@
                                 <div class="col-md-4 col-sm-6">
                                     <div class="single-portfolio">
                                         <div class="single-portfolio-img">
-                                            <a href="/Movie/Detail?id=@Model.Movies[i].ImdbId">
+                                            <a asp-action="Detail" asp-controller="Movie" asp-route-id="@Model.Movies[i].ImdbId">
                                                 <img src="@Html.DisplayFor(model => Model.Movies[i].Poster)" alt="about" onerror="this.src='/img/image-not-found.jpg'" />
                                             </a>
                                         </div>

@@ -12,8 +12,8 @@
                 <div class="row hero-area-slide">
                     <div class="col-lg-6 col-md-5">
                         <div class="hero-area-content">
-                            <a href="/Movie/Detail?id=@Model.Movies[i].ImdbId">
-                                <img src="@Html.DisplayFor(model => model.Movies[i].Poster)" alt="about" onerror="this.src='/img/image-not-found.jpg'"/>
+                            <a asp-action="Detail" asp-controller="Movie" asp-route-id="@Model.Movies[i].ImdbId">
+                                <img src="@Html.DisplayFor(model => model.Movies[i].Poster)" alt="about" onerror="this.src='/img/image-not-found.jpg'" />
                                 <h2 class="news-date">Top 3 on<br /> CMDb</h2>
                             </a>
                         </div>
@@ -93,12 +93,12 @@
                                 <div class="col-md-4 col-sm-6">
                                     <div class="single-portfolio">
                                         <div class="single-portfolio-img">
-                                            <a href="/Movie/Detail?id=@Model.Movies[i].ImdbId">
+                                            <a asp-action="Detail" asp-controller="Movie" asp-route-id="@Model.Movies[i].ImdbId">
                                                 <img src="@Html.DisplayFor(model => Model.Movies[i].Poster)" alt="about" onerror="this.src='/img/image-not-found.jpg'" />
                                             </a>
                                         </div>
                                         <div class="portfolio-content">
-                                            <h4>@Html.ActionLink(Model.Movies[i].Title, "Detail", "Movie", new { id = Model.Movies[i].ImdbId })</h4>
+                                            <h4><a asp-action="Detail" asp-controller="Movie" asp-route-id="@Model.Movies[i].ImdbId">@Model.Movies[i].Title</a></h4>
                                             <div class="review">
                                                 <h6>CMDb rating</h6>
                                                 <div class="likeDisLikeButtons">

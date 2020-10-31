@@ -1,10 +1,3 @@
-/*
-Theme Name: Movie Point
-Version: 1.0
-Author: Jsoft
-Description: Online Movie,Vedio and TV Show HTML Template
-*/
-
 /**
  *** CSS Indexing ***
  * THEME DEFAULT CSS
@@ -42,10 +35,15 @@ div ul li{
 
 .plot-div {
     width: 100%;
-    height: 50px;
+    height: auto;
+    max-height: 50px;
     display: block;
     padding: 10px;
     overflow: hidden;
+    transition: max-height 200ms linear;
+}
+.plot-div.is-active{
+    max-height: 300px;
 }
 
 #movieInformation {
@@ -58,7 +56,7 @@ div ul li{
     border-radius: 2px;
     z-index: 100;
 }
-#like {
+#like, #dislike {
     display: block;
     text-align: center;
     background: #ed2553;
@@ -77,48 +75,17 @@ div ul li{
     width: 100px;
     height: 30px;
 }
-
-    #like:hover {
+    #like:hover, #dislike:hover {
         transform: translateY(-3px);
     }
-    #like:disabled {
+    #like:disabled, #dislike:disabled {
         cursor: default;
         opacity: 0.5;
     }
-        #like:disabled:hover {
+        #like:disabled:hover, #dislike:disabled:hover {
             transform: none;
         }
 
-#dislike {
-    display: block;
-    text-align: center;
-    background: #ed2553;
-    border-radius: 3px;
-    box-shadow: 0 10px 20px -8px rgb(240, 75, 113);
-    margin: 10px;
-    padding: 5px 25px;
-    font-size: 18px;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    color: #ffffff;
-    text-decoration: none;
-    -webkit-transition: 0.3s ease;
-    transition: 0.3s ease;
-    width: 100px;
-    height: 30px;
-}
-
-    #dislike:hover {
-        transform: translateY(-3px);
-    }
-        #dislike:disabled:hover {
-        transform: none;
-        }
-    #dislike:disabled {
-        cursor: default;
-        opacity: 0.5;
-    }
 .likeDisLikeButtons button{
     float: left
 }
