@@ -32,7 +32,7 @@
 <body>
 
     <!-- Page loader -->
-    <div id="preloader"></div>
+    @*<div id="preloader"></div>*@
     <!-- header section start -->
     <header class="header">
         <div class="container">
@@ -41,21 +41,21 @@
                     <a href="/"><img src="/img/cmdbLogo.png" alt="logo" /></a>
                 </div>
                 <div class="header-right">
+                    <form asp-action="Search" asp-controller="Home" method="get">
+                        @Html.TextBox("id")
+                        <button type="submit"><i class="icofont icofont-search"></i></button>
+                    </form>
+                </div>
+                <div class="menu-area">
                     <div class="responsive-menu"></div>
                     <div class="mainmenu">
                         <ul id="primary-menu">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("Movie", "Index", "Movie")</li>
                         </ul>
-
                     </div>
-                        <form asp-action="Search" asp-controller="Home" method="get">
-
-                            @Html.TextBox("id")
-                            <button type="submit"><i class="icofont icofont-search"></i></button>
-                        </form>
                 </div>
-            </div>
+             </div>
         </div>
     </header>
     <!-- header section end -->
