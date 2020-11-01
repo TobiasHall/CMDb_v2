@@ -420,7 +420,6 @@ input::-webkit-input-placeholder {
     color: #eb315a;
 }
 .header-right form {
-    display: flex;
     max-width: 380px;
     border: 1px solid #eee;
     border-radius: 30px;
