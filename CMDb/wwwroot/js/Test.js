@@ -9,9 +9,10 @@
         const url = "https://www.omdbapi.com/?s=" + movieName + "&apikey=1252672d";        
         //cmdb.open("Get", url, true)
         //cmdb.send()
-
+        const content = document.querySelector('.list-group')
+        removeAllChildNodes(content)
         
-        fetch(url2)
+        fetch(url)
             .then(
                 function (response) {
                     if (response.status !== 200) {
@@ -21,7 +22,25 @@
                     }
                     // Examine the text in the response
                     response.json().then(function (data) {
-                        console.log(data);
+
+                        for (var i = 0; i < data.Search.length; i++) {
+
+                            const movie = document.createElement('button')
+                            movie.textContent = `${data.Search[i].Title} (${data.Search[i].Year})`                            
+                            movie.type = 'Submit'
+
+                            
+                            
+                            content.appendChild(movie)
+
+
+                        }
+
+
+
+
+
+
                     });
                 }
             )
@@ -34,3 +53,8 @@
 }
 
 
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}

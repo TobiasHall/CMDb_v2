@@ -24,7 +24,7 @@
 </head>
 
 <body>
-
+    <script src="~/js/Test.js"></script>
     <!-- header section start -->
     <header class="header">
         <div class="container">
@@ -33,16 +33,11 @@
                     <a href="/"><img src="/img/cmdbLogo.png" alt="logo" /></a>
                 </div>
                 <div class="header-right">
-                    <form asp-action="Search" asp-controller="Home" method="get">
-                        @Html.TextBox("id")
+                    <form asp-action="Detail" asp-controller="Movie" method="get">
+                        <input id="txt" type="text" onkeyup="myFunction()" />
                         <button type="submit"><i class="icofont icofont-search"></i></button>
                         <br />
-                        <ul class="list-group" id="myList">
-                            <li class="list-group-item">First item</li>
-                            <li class="list-group-item">Second item</li>
-                            <li class="list-group-item">Third item</li>
-                            <li class="list-group-item">Fourth item</li>
-                        </ul>
+                        
                     </form>
                 </div>
                 <div class="menu-area">
@@ -55,11 +50,16 @@
                     </div>
                 </div>
              </div>
-        </div>
-    </header>
     <!-- header section end -->
 
-
+    <div>
+        <form asp-action="Detail" asp-controller="Movie" method="get">
+            <ul class="list-group" id="myList">
+            </ul>
+        </form>
+    </div>
+        </div>
+    </header>
 
     @RenderBody()
 
