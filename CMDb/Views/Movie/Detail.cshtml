@@ -23,7 +23,7 @@
                 </div>
                 <div class="col-lg-7">
                     <div class="transformers-content">
-                        <h2>@Model.Title</h2>                        
+                        <h2>@Model.Title</h2>
                         <ul>
                             <li>
                                 <div class="transformers-left">
@@ -73,18 +73,11 @@
                                     @Model.Language
                                 </div>
                             </li>
-                            <li>
-                                <div class="transformers-left">
-                                    Share:
-                                </div>
-                                <div class="transformers-right">
-                                    <a href="#"><i class="icofont icofont-social-facebook"></i></a>
-                                    <a href="#"><i class="icofont icofont-social-twitter"></i></a>
-                                    <a href="#"><i class="icofont icofont-social-google-plus"></i></a>
-                                    <a href="#"><i class="icofont icofont-youtube-play"></i></a>
-                                </div>
-                            </li>
                         </ul>
+                        <div class="likeDisLikeButtons">
+                            <button id="like" name="@Model.ImdbId" class="icofont icofont-thumbs-up">@Html.DisplayFor(item => @Model.NumberOfLikes)</button>
+                            <button id="dislike" name="@Model.ImdbId" class="icofont icofont-thumbs-down">@Html.DisplayFor(item => @Model.NumberOfDislikes)</button>
+                        </div>
                     </div>
                 </div>
             </div>            
