@@ -110,8 +110,20 @@ div ul li{
     transform: translateY(-3px);
 }
 
-ul.list-group {
+.list-group {
     z-index: 100;
+    text-align: center;
+    background: #343a40;
+}
+.list-group a{
+    border: 2px solid black;
+    font-size: 18px;
+    padding: 10px;
+}
+.list-group img {
+    padding: 2px;
+    float: right;
+    max-height: 75px;
 }
 /*----------------------------
 ---------- RESET CSS ---------
@@ -440,7 +452,6 @@ option {
 }
 .header-right form select {
     background: url('../img/select-icon.png') no-repeat right center;
-    color: #fff;
     padding: 0 20px 0 30px;
     border: none;
 	-moz-appearance: none;
@@ -451,10 +462,8 @@ option {
 .header-right form input {
     width: auto;
 	background: transparent;
-	color: #fff;
     border: none;
     margin: 0;
-    border-left: 1px solid #ddd;
     margin-left: 20px;
 }
 

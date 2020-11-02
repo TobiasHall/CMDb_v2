@@ -27,20 +27,6 @@ namespace CMDb.Controllers
             var model = await omdb.GetMovieViewModelIEnum(toplist);
             
             return View(model);
-        }
-        [HttpGet("Home/Test")]
-        public async Task<IActionResult> Test(string id)
-        {
-            var test = await cmdb.GetDisLike(id);
-
-            return View(test);
-        }
-        [HttpGet("Home/Search")]
-        public async Task<IActionResult> Search(string id) 
-        {
-
-            var test = await omdb.GetMovieSearch(id);
-            return View(test);
-        }
+        }       
     }
 }

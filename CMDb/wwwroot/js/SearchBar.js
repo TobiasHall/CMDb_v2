@@ -1,14 +1,12 @@
-﻿function myFunction() {
+﻿function searchMovie() {
     if (this.timer) {
         window.clearTimeout(this.timer);
     }
     this.timer = window.setTimeout(function () {
 
-        const movieName = document.querySelector('#txt').value
-        //const cmdb = new XMLHttpRequest()    
+        const movieName = document.querySelector('#txt').value        
         const url = "https://www.omdbapi.com/?s=" + movieName + "&apikey=1252672d";        
-        //cmdb.open("Get", url, true)
-        //cmdb.send()
+        
         const content = document.querySelector('.list-group')
         removeAllChildNodes(content)
         
@@ -16,39 +14,30 @@
             .then(
                 function (response) {
                     if (response.status !== 200) {
-                        console.log('Looks like there was a problem. Status Code: ' +
-                            response.status);
+                        const error = document.createElement('a')
+                        error.textContent = `Something went wrong ${response.status}`
                         return;
-                    }
-                    // Examine the text in the response
+                    }                    
                     response.json().then(function (data) {
 
                         for (var i = 0; i < data.Search.length; i++) {
 
-                            const movie = document.createElement('button')
+                            const movie = document.createElement('a')
                             movie.textContent = `${data.Search[i].Title} (${data.Search[i].Year})`                            
-                            movie.type = 'Submit'
+                            movie.href = `/Movie/Detail?id=${data.Search[i].imdbID}`
+                            movie.value
+                            const poster = document.createElement('img')
+                            poster.src = data.Search[i].Poster
 
-                            
-                            
+                            movie.appendChild(poster)                            
                             content.appendChild(movie)
-
-
                         }
-
-
-
-
-
-
                     });
                 }
             )
             .catch(function (err) {
                 console.log('Fetch Error :-S', err);
             });
-        
-
     }, 500);
 }
 

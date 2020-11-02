@@ -18,13 +18,29 @@
             <div class="row flexbox-center">
                 <div class="col-lg-5 text-lg-left text-center">
                     <div class="transformers-content">
-                        <img src="@Model.Poster" alt="about" onerror="this.src='/img/image-not-found.jpg'"/>
+                        <img src="@Model.Poster" alt="about" />
                     </div>
                 </div>
                 <div class="col-lg-7">
                     <div class="transformers-content">
                         <h2>@Model.Title</h2>
                         <ul>
+                            <li>
+                                <div class="transformers-left">
+                                    Plot:
+                                </div>
+                                <div class="transformers-right">
+                                    @Model.Plot
+                                </div>
+                            </li>
+                            <li>
+                                <div class="transformers-left">
+                                    Actors:
+                                </div>
+                                <div class="transformers-right">
+                                    @Model.Actors
+                                </div>
+                            </li>
                             <li>
                                 <div class="transformers-left">
                                     Genre:
@@ -75,6 +91,7 @@
                             </li>
                         </ul>
                         <div class="likeDisLikeButtons">
+                            <h4>CMDb rating:</h4>
                             <button id="like" name="@Model.ImdbId" class="icofont icofont-thumbs-up">@Html.DisplayFor(item => @Model.NumberOfLikes)</button>
                             <button id="dislike" name="@Model.ImdbId" class="icofont icofont-thumbs-down">@Html.DisplayFor(item => @Model.NumberOfDislikes)</button>
                         </div>
@@ -85,7 +102,7 @@
     </div>
 </section><!-- transformers area end -->
 <!-- details area start -->
-<section class="details-area">
+<!--<section class="details-area">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -133,4 +150,4 @@
             </div>            
         </div>
     </div>
-</section><!-- details area end -->
+</section>--><!-- details area end -->

@@ -21,5 +21,7 @@ namespace CMDb.Models.DTO
         public string Runtime { get; set; }
         public string Released { get; set; }
         public string Language { get; set; }
+        public string Actors { get; set; }
+
     }
 }

@@ -24,7 +24,8 @@
 </head>
 
 <body>
-    <script src="~/js/Test.js"></script>
+
+
     <!-- header section start -->
     <header class="header">
         <div class="container">
@@ -33,31 +34,30 @@
                     <a href="/"><img src="/img/cmdbLogo.png" alt="logo" /></a>
                 </div>
                 <div class="header-right">
-                    <form asp-action="Detail" asp-controller="Movie" method="get">
-                        <input id="txt" type="text" onkeyup="myFunction()" />
+                    <form action="javascript:searchMovie()">
+                        <input id="txt" type="text" onkeyup="searchMovie()" />
                         <button type="submit"><i class="icofont icofont-search"></i></button>
                         <br />
-                        
+
                     </form>
                 </div>
                 <div class="menu-area">
                     <div class="responsive-menu"></div>
                     <div class="mainmenu">
                         <ul id="primary-menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li >@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("Movie", "Index", "Movie")</li>
                         </ul>
                     </div>
                 </div>
-             </div>
-    <!-- header section end -->
+            </div>
+            <!-- header section end -->
 
-    <div>
-        <form asp-action="Detail" asp-controller="Movie" method="get">
-            <ul class="list-group" id="myList">
-            </ul>
-        </form>
-    </div>
+            <div>
+                <form class="list-group">
+                   
+                </form>
+            </div>
         </div>
     </header>
 
@@ -110,7 +110,10 @@
             </div>
         </div>
     </footer><!-- footer section end -->
-       
+
+
+    <script src="~/js/LikeDisLike.js"></script>
+    <script src="~/js/SearchBar.js"></script>
 
     @RenderSection("Scripts", required: false)
 
@@ -119,7 +122,7 @@
     <!-- Slick nav JS -->
     <script src="/js/jquery.slicknav.min.js"></script>
     <!-- owl carousel JS -->
-    <script src="/js/owl.carousel.min.js"></script>   
+    <script src="/js/owl.carousel.min.js"></script>
     <!-- main JS -->
     <script src="/js/main.js"></script>
 </body>

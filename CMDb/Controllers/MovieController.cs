@@ -32,26 +32,16 @@ namespace CMDb.Controllers
         public async Task<IActionResult> Detail(string id)
         {
             var model = await cmdb.GetMovie(id);
-            var model2 = await omdb.GetDetailPageViewModel(model);
-
-            return View(model2);
-        }
-        [HttpGet("Movie/Search")]
-        public async Task<IActionResult> Search(string id)
-        {
-            var model2 = await cmdb.GetMovie(id);
-
-            if (model2 == null)
+            if (model == null)
             {
-                var model = await omdb.GetMovieById(id);
-                return View("detail", model);
+                var model2 = await omdb.GetMovieById(id);
+                return View(model2);
             }
             else
-            { 
-                var model3 = await omdb.GetDetailPageViewModel(model2);
-                return View("detail", model3);
+            {
+                var model3 = await omdb.GetDetailPageViewModel(model);
+                return View(model3);
             }
         }
-
     }
 }

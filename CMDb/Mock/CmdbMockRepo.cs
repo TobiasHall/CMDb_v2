@@ -43,15 +43,5 @@ namespace CMDb.Mock
             await Task.Delay(0);
             return result;
         }
-
-        public Task<CmdbMovieDto> GetLike(string imdbId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<CmdbMovieDto> GetDisLike(string imdbId)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

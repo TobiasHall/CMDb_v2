@@ -22,6 +22,7 @@ namespace CMDb.Models.ViewModels
         public string Runtime { get; set; }
         public string Released { get; set; }
         public string Language { get; set; }
+        public string Actors { get; set; }
 
 
         public DetailPageViewModel(MovieDetailDto movieDetailDto)
@@ -40,6 +41,7 @@ namespace CMDb.Models.ViewModels
             this.Runtime = movieDetailDto.Runtime;
             this.Released = movieDetailDto.Released;
             this.Language = movieDetailDto.Language;
+            this.Actors = movieDetailDto.Actors;
         }
     }
 }

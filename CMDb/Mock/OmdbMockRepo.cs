@@ -55,13 +55,5 @@ namespace CMDb.Mock
             return new MovieViewModel(movies);
             
         }
-
-        public async Task<SearchPageViewModel> GetMovieSearch(string titel)
-        {
-            string testFile = "SearchResultBatman.json";
-            var result = FileHandler.GetTestData<SearchDetailDto>(basePath + testFile);
-            await Task.Delay(0);
-            return new SearchPageViewModel(result);
-        }
     }
 }
