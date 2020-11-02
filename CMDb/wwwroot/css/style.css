@@ -109,6 +109,11 @@ div ul li{
 #go-to-btn:hover {
     transform: translateY(-3px);
 }
+
+ul.list-group {
+    display: none;
+    z-index: 100;
+}
 /*----------------------------
 ---------- RESET CSS ---------
 ----------------------------*/
@@ -459,8 +464,7 @@ option {
 }
 .header-right ul li {
     padding: 8px 0 0;
-    margin-left: 15px;
-    display: inline-block;
+    display: flex;
 }
 /*--------------------------------------
 --------- HEADER AREA CSS END ---------

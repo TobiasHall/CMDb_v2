@@ -210,9 +210,12 @@
 	display: none;
 }
 }
-@media only screen and (max-width: 767px){
+@media only screen and (max-width: 768px){
 	.news-slider .single-news {
 		max-width: 510px;
+	}
+	ul.list-group {
+		display: none;
 	}
 	.news-content {
     right: 20px;
@@ -414,7 +417,9 @@
     margin-bottom: 20px;
 }
 
-
+	ul.list-group {
+		display: none;
+	}
 
 
 
@@ -423,6 +428,10 @@
 .news-bg-1,.news-bg-2,.news-bg-3 {
     height: 400px;
 }
+
+	ul.list-group {
+		display: none;
+	}
 
 .news-content h2 {
     font-size: 20px;
