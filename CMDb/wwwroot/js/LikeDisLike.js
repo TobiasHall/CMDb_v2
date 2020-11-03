@@ -5,12 +5,12 @@ const btnDislike = document.querySelectorAll('#dislike')
 
 for (let index = 0; index < btnLike.length; index++) {
 
-    btnLike[index].addEventListener('click', function () {
+    btnLike[index].addEventListener('click', async function () {
         const imdbId = btnLike[index].name
         const statement = btnLike[index].id
         //const url = `https://localhost:44313/api/${imdbId}/${statement}`
         const url = `https://cmdbapi.kaffekod.se/api/${imdbId}/${statement}`
-        fetch(url).then(function (response) {
+        await fetch(url).then(function (response) {
             return response.json();
         }).then(function (json) {
             btnLike[index].textContent++
@@ -26,12 +26,12 @@ for (let index = 0; index < btnLike.length; index++) {
 
 for (let index = 0; index < btnDislike.length; index++) {
 
-    btnDislike[index].addEventListener('click', function () {
+    btnDislike[index].addEventListener('click', async function () {
         const imdbId = btnLike[index].name
         const statement = btnLike[index].id
         //const url = `https://localhost:44313/api/${imdbId}/${statement}`
         const url = `https://cmdbapi.kaffekod.se/api/${imdbId}/${statement}`
-        fetch(url).then(function (response) {
+        await fetch(url).then(function (response) {
             return response.json();
         }).then(function (json) {
             btnDislike[index].textContent++

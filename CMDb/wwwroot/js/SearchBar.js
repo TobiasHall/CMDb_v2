@@ -2,7 +2,7 @@
     if (this.timer) {
         window.clearTimeout(this.timer);
     }
-    this.timer = window.setTimeout(function () {
+    this.timer = window.setTimeout(async function () {
 
         const movieName = document.querySelector('#txt').value        
         const url = "https://www.omdbapi.com/?s=" + movieName + "&apikey=1252672d";        
@@ -10,7 +10,7 @@
         const content = document.querySelector('.list-group')
         removeAllChildNodes(content)
         
-        fetch(url)
+        await fetch(url)
             .then(function (response) {
                 if (response.status !== 200) {
                     const error = document.createElement('a')
