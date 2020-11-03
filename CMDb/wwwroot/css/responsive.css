@@ -149,7 +149,6 @@
 		order: -1;
 		grid-column: span 12;
 		text-align: center;
-		display: inline-block;
 	}
 
 	.header-right form {
@@ -443,7 +442,6 @@
     grid-column: span 4;
 }
 .header-right form {
-    display: flex;
 }
 .hero-area-content .author-review {
     float: none;

@@ -23,11 +23,11 @@ namespace CMDb
 
             services.AddScoped<IApiClient, ApiClient>();
 
-            services.AddScoped<IOmdb, OmdbRepo>();
-            //services.AddScoped<IOmdb, OmdbMockRepo>();
+            //services.AddScoped<IOmdb, OmdbRepo>();
+            services.AddScoped<IOmdb, OmdbMockRepo>();
 
-            services.AddScoped<ICmdb, CmdbRepo>();
-            //services.AddScoped<ICmdb, CmdbMockRepo>();
+            //services.AddScoped<ICmdb, CmdbRepo>();
+            services.AddScoped<ICmdb, CmdbMockRepo>();
 
         }
 
