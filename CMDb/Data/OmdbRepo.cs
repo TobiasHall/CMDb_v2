@@ -23,35 +23,27 @@ namespace CMDb.Data
             baseUrl = configuration.GetValue<string>("OpenMovieDatabaseApi:BaseUrl");
             key = configuration.GetValue<string>("OpenMovieDatabaseApi:Key");
             this.apiClient = apiClient;
-            
         }
-        public async Task<OmdbMovieDto> GetMovie(string imdbId)
-        {
-
-                return await apiClient.GetAsync<OmdbMovieDto>($"{baseUrl}{key}{imdbId}");
-        }
-        public async Task<DetailPageViewModel> GetMovieById(string id)
+        public async Task<DetailPageViewModel> GetMovieFromOmdb(string id)
         {
             string movieId = $"?i={id}";
             var result = await apiClient.GetAsync<MovieDetailDto>($"{baseUrl}{movieId}{key}");
-            
-            return new DetailPageViewModel(result);            
+
+            return new DetailPageViewModel(result);
         }
 
-        public async Task<MovieViewModel> GetMovieViewModelIEnum(IEnumerable<CmdbMovieDto> cmdbDtoMovies)
-        {           
-                List<MovieDetailDto> movies = new List<MovieDetailDto>();                
-                
-                foreach (var movie in cmdbDtoMovies)
-                {
-                    string movieId = $"?i={movie.ImdbId}";
-                    var result = await apiClient.GetAsync<MovieDetailDto>($"{baseUrl}{movieId}{key}");
-                    result.NumberOfLikes = movie.NumberOfLikes;
-                    result.NumberOfDislikes = movie.NumberOfDislikes;                    
-                    movies.Add(result);
-                }
-
-                return new MovieViewModel(movies);         
+        public async Task<MovieViewModel> GetMovieViewModel(IEnumerable<CmdbMovieDto> cmdbDtoMovies)
+        {
+            List<MovieDetailDto> movies = new List<MovieDetailDto>();
+            foreach (var movie in cmdbDtoMovies)
+            {
+                string movieId = $"?i={movie.ImdbId}";
+                var result = await apiClient.GetAsync<MovieDetailDto>($"{baseUrl}{movieId}{key}");
+                result.NumberOfLikes = movie.NumberOfLikes;
+                result.NumberOfDislikes = movie.NumberOfDislikes;
+                movies.Add(result);
+            }
+            return new MovieViewModel(movies);
         }
 
         public async Task<DetailPageViewModel> GetDetailPageViewModel(CmdbMovieDto cmdbDtoMovies)
@@ -62,6 +54,6 @@ namespace CMDb.Data
             result.NumberOfDislikes = cmdbDtoMovies.NumberOfDislikes;
 
             return new DetailPageViewModel(result);
-        }        
+        }
     }
 }

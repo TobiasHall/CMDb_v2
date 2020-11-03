@@ -25,45 +25,22 @@ namespace CMDb.Data
             rating = configuration.GetValue<string>("CMDbApi:ToplistByRating");
             popularity = configuration.GetValue<string>("CMDbApi:ToplistByPopularity");
             this.apiClient = apiClient;
-            //this.configuration = configuration;
         }
-        public async Task<IEnumerable<CmdbMovieDto>> GetToplistWithRatingAndCount(int number)
+        public async Task<IEnumerable<CmdbMovieDto>> GetToplistWithRatingAndCount(int count)
         {
-            
-            using (HttpClient client = new HttpClient())
-            {
-                string endpoint = $"{baseUrl}{rating}&count={number}";
-                
-
-                return await apiClient.GetAsync<IEnumerable<CmdbMovieDto>>(endpoint);
-
-
-                //var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
-                //response.EnsureSuccessStatusCode();
-                //var data = await response.Content.ReadAsStringAsync();
-                //var result = JsonConvert.DeserializeObject<IEnumerable<CmdbMovieDto>>(data);
-
-
-                //return result;
-            }
+            string endpoint = $"{baseUrl}{rating}&count={count}";
+            return await apiClient.GetAsync<IEnumerable<CmdbMovieDto>>(endpoint);
 
         }
-        public async Task<IEnumerable<CmdbMovieDto>> GetToplistByPopularitAndCount()
+        public async Task<IEnumerable<CmdbMovieDto>> GetToplistByPopularitAndCount(int count)
         {
-
-                string endpoint = $"{baseUrl}{popularity}&count=10";
-                return await apiClient.GetAsync<IEnumerable<CmdbMovieDto>>(endpoint);
-
-                //var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
-                //response.EnsureSuccessStatusCode();
-                //var data = await response.Content.ReadAsStringAsync();
-                //var result = JsonConvert.DeserializeObject<IEnumerable<CmdbMovieDto>>(data);
-                //return result;
+            string endpoint = $"{baseUrl}{popularity}&count={count}";
+            return await apiClient.GetAsync<IEnumerable<CmdbMovieDto>>(endpoint);
         }
 
-        public async Task<CmdbMovieDto> GetMovie(string id)
+        public async Task<CmdbMovieDto> GetMovieFromCmdb(string id)
         {
-            return  await apiClient.GetAsync<CmdbMovieDto>($"{baseUrl}Movie/{id}");
+            return await apiClient.GetAsync<CmdbMovieDto>($"{baseUrl}Movie/{id}");
         }
     }
 }

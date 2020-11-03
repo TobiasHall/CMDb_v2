@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CMDb.Controllers
 {
-
     public class HomeController : Controller
     {
         private IOmdb omdb;
@@ -24,7 +23,7 @@ namespace CMDb.Controllers
         public async Task<IActionResult> Index()
         {
             var toplist = await cmdb.GetToplistWithRatingAndCount(12);
-            var model = await omdb.GetMovieViewModelIEnum(toplist);
+            var model = await omdb.GetMovieViewModel(toplist);
             
             return View(model);
         }       

@@ -19,16 +19,8 @@ namespace CMDb.Mock
         {
             basePath = $"{webHostEnvironment.ContentRootPath}\\Mock\\MockData\\";
         }
-        
-        public async Task<OmdbMovieDto> GetMovie(string testFile=null)
-        {
-            testFile = testFile ?? "joker.json";
-            var result = FileHandler.GetTestData<OmdbMovieDto>(basePath + testFile);
-            await Task.Delay(0);
-            return result;
-        }
 
-        public async Task<DetailPageViewModel> GetMovieById(string title)
+        public async Task<DetailPageViewModel> GetMovieFromOmdb(string title)
         {            
             string testfile = "joker.json";
             var result = FileHandler.GetTestData<MovieDetailDto>(basePath + testfile);
@@ -45,7 +37,7 @@ namespace CMDb.Mock
             return new DetailPageViewModel(result);
         }
 
-        public async Task<MovieViewModel> GetMovieViewModelIEnum(IEnumerable<CmdbMovieDto> cmdbDtoMovies)
+        public async Task<MovieViewModel> GetMovieViewModel(IEnumerable<CmdbMovieDto> cmdbDtoMovies)
         {
             List<MovieDetailDto> movies;
 

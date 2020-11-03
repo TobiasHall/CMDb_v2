@@ -14,33 +14,32 @@ namespace CMDb.Controllers
         private ICmdb cmdb;
         private IOmdb omdb;
 
-        public MovieController(ICmdb cmdbRepo, IOmdb omdb)
+        public MovieController(ICmdb cmdb, IOmdb omdb)
         {
-            this.cmdb = cmdbRepo;
+            this.cmdb = cmdb;
             this.omdb = omdb;
         }
 
         public async Task<IActionResult> Index()
         {
-            var cmdbMovies = await cmdb.GetToplistByPopularitAndCount();
-            var model = await omdb.GetMovieViewModelIEnum(cmdbMovies);
-
+            var cmdbMovies = await cmdb.GetToplistByPopularitAndCount(10);
+            var model = await omdb.GetMovieViewModel(cmdbMovies);
 
             return View(model);
         }
         [HttpGet("Movie/Detail")]
         public async Task<IActionResult> Detail(string id)
         {
-            var model = await cmdb.GetMovie(id);
-            if (model == null)
+            var cmdbMovie = await cmdb.GetMovieFromCmdb(id);
+            if (cmdbMovie == null)
             {
-                var model2 = await omdb.GetMovieById(id);
-                return View(model2);
+                var detailPageViewModel = await omdb.GetMovieFromOmdb(id);
+                return View(detailPageViewModel);
             }
             else
             {
-                var model3 = await omdb.GetDetailPageViewModel(model);
-                return View(model3);
+                var detailPageViewModel = await omdb.GetDetailPageViewModel(cmdbMovie);
+                return View(detailPageViewModel);
             }
         }
     }

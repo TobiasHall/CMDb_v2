@@ -20,7 +20,7 @@ namespace CMDb.Mock
             basePath = $"{webHostEnvironment.ContentRootPath}\\Mock\\MockData\\";
         }
 
-       public async Task<IEnumerable<CmdbMovieDto>> GetToplistWithRatingAndCount(int number)
+       public async Task<IEnumerable<CmdbMovieDto>> GetToplistWithRatingAndCount(int count)
         {
             string testFile = "toplist.json";
             var result = FileHandler.GetTestData<IEnumerable<CmdbMovieDto>>(basePath + testFile);
@@ -28,7 +28,7 @@ namespace CMDb.Mock
             return result;
         }
 
-        public async Task<IEnumerable<CmdbMovieDto>> GetToplistByPopularitAndCount()
+        public async Task<IEnumerable<CmdbMovieDto>> GetToplistByPopularitAndCount(int count)
         {
             string testFile = "toplist.json";
             var result = FileHandler.GetTestData<IEnumerable<CmdbMovieDto>>(basePath + testFile);
@@ -36,7 +36,7 @@ namespace CMDb.Mock
             return result;
         }
 
-        public async Task<CmdbMovieDto> GetMovie(string id)
+        public async Task<CmdbMovieDto> GetMovieFromCmdb(string id)
         {
             string testFile = "cmdbMovie.json";
             var result = FileHandler.GetTestData<CmdbMovieDto>(basePath + testFile);
