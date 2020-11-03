@@ -30,7 +30,7 @@ for (let index = 0; index < btnDislike.length; index++) {
     })
 }
 
-async function connectToApi(imdbId, statement) { 
+function connectToApi(imdbId, statement) { 
 
     const url = `https://localhost:44313/api/${imdbId}/${statement}`
     fetch(url, {
