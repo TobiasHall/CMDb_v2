@@ -14,27 +14,24 @@
             .then(
                 function (response) {
                     if (response.status !== 200) {
-                        const error = document.createElement('a')
-                        error.textContent = `Something went wrong ${response.status}`
+                        const error = document.createElement('a')                        
+                        error.textContent = `Something went wrong, error code:${response.status}`
+                        content.appendChild(error)
                         return;
-                    }                    
-                    response.json().then(function (data) {
-
-                        for (var i = 0; i < data.Search.length; i++) {
-
-                            const movie = document.createElement('a')
-                            movie.textContent = `${data.Search[i].Title} (${data.Search[i].Year})`                            
-                            movie.href = `/Movie/Detail?id=${data.Search[i].imdbID}`
-                            movie.value
-                            const poster = document.createElement('img')
-                            poster.src = data.Search[i].Poster
-
-                            movie.appendChild(poster)                            
-                            content.appendChild(movie)
-                        }
-                    });
-                }
-            )
+                    }
+                    response.json()
+                        .then(function (data) {
+                            for (var i = 0; i < data.Search.length; i++) {
+                                const movie = document.createElement('a')
+                                movie.textContent = `${data.Search[i].Title} (${data.Search[i].Year})`
+                                movie.href = `/Movie/Detail?id=${data.Search[i].imdbID}`
+                                const poster = document.createElement('img')
+                                poster.src = data.Search[i].Poster
+                                movie.appendChild(poster)
+                                content.appendChild(movie)
+                            }
+                        });
+                })
             .catch(function (err) {
                 console.log('Fetch Error :-S', err);
             });
@@ -47,3 +44,24 @@ function removeAllChildNodes(parent) {
         parent.removeChild(parent.firstChild);
     }
 }
+
+
+
+
+
+
+
+//async function connectToApi(imdbId, statement) {
+//    const url = `https://localhost:44313/api/${imdbId}/${statement}`
+
+//    await fetch(url, {
+//        mode: 'no-cors'
+//    })
+//        .then(response => response.json())
+//        .then(data => {
+//            console.log(data)
+//        })
+//        .catch(err => {
+//            // Do something for an error here
+//        })
+//}

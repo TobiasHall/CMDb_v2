@@ -128,43 +128,6 @@
 		}
 	});
 	
-	/*----------------------------
-	START - videos popup
-	------------------------------ */
-	$('.popup-youtube').magnificPopup({type:'iframe'});
-	//iframe scripts
-	$.extend(true, $.magnificPopup.defaults, {  
-		iframe: {
-			patterns: {
-				//youtube videos
-				youtube: {
-					index: 'youtube.com/', 
-					id: 'v=', 
-					src: 'https://www.youtube.com/embed/%id%?autoplay=1' 
-				}
-			}
-		}
-	});
-	
-	/*----------------------------
-    START - Isotope
-    ------------------------------ */
-    jQuery(".portfolio-item").isotope();
-    $(".portfolio-menu li").on("click", function(){
-      $(".portfolio-menu li").removeClass("active");
-      $(this).addClass("active");
-      var selector = $(this).attr('data-filter');
-      $(".portfolio-item").isotope({
-        filter: selector
-      })
-    });
-	
-	/*----------------------------
-    START - Preloader
-    ------------------------------ */
-	jQuery(window).load(function(){
-		jQuery("#preloader").fadeOut(500);
-	});
 	
 
 }(jQuery));
