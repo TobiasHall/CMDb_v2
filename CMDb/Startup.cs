@@ -26,8 +26,8 @@ namespace CMDb
             //services.AddScoped<IOmdb, OmdbRepo>();
             services.AddScoped<IOmdb, OmdbMockRepo>();
 
-            services.AddScoped<ICmdb, CmdbRepo>();
-            //services.AddScoped<ICmdb, CmdbMockRepo>();
+            //services.AddScoped<ICmdb, CmdbRepo>();
+            services.AddScoped<ICmdb, CmdbMockRepo>();
 
         }
 
