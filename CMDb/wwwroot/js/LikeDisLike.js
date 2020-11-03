@@ -5,7 +5,7 @@ const btnDislike = document.querySelectorAll('#dislike')
 
 for (let index = 0; index < btnLike.length; index++) {
 
-    btnLike[index].addEventListener('click', function (event) {
+    btnLike[index].addEventListener('click', function () {
         const imdbId = btnLike[index].name
         const statement = btnLike[index].id
         //const url = `https://localhost:44313/api/${imdbId}/${statement}`
@@ -13,7 +13,7 @@ for (let index = 0; index < btnLike.length; index++) {
         fetch(url).then(function (response) {
             return response.json();
         }).then(function (json) {
-            event = btnLike[index].textContent++
+            btnLike[index].textContent++
             btnLike[index].disabled = true
             btnDislike[index].disabled = true
             console.log(json);
@@ -26,7 +26,7 @@ for (let index = 0; index < btnLike.length; index++) {
 
 for (let index = 0; index < btnDislike.length; index++) {
 
-    btnDislike[index].addEventListener('click', function (event) {
+    btnDislike[index].addEventListener('click', function () {
         const imdbId = btnLike[index].name
         const statement = btnLike[index].id
         //const url = `https://localhost:44313/api/${imdbId}/${statement}`
@@ -34,10 +34,9 @@ for (let index = 0; index < btnDislike.length; index++) {
         fetch(url).then(function (response) {
             return response.json();
         }).then(function (json) {
-        event = btnDislike[index].textContent++
-        btnLike[index].disabled = true
-        btnDislike[index].disabled = true       
-  
+            btnDislike[index].textContent++
+            btnLike[index].disabled = true
+            btnDislike[index].disabled = true
             console.log(json);
         }).catch(function (err) {
             console.log('Fetch problem: ' + err.message);
