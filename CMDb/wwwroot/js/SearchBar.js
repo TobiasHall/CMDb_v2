@@ -43,24 +43,3 @@ function removeAllChildNodes(parent) {
         parent.removeChild(parent.firstChild);
     }
 }
-
-
-
-
-
-
-
-//async function connectToApi(imdbId, statement) {
-//    const url = `https://localhost:44313/api/${imdbId}/${statement}`
-
-//    await fetch(url, {
-//        mode: 'no-cors'
-//    })
-//        .then(response => response.json())
-//        .then(data => {
-//            console.log(data)
-//        })
-//        .catch(err => {
-//            // Do something for an error here
-//        })
-//}
