@@ -13,36 +13,65 @@ const btnDislike = document.querySelectorAll('#dislike')
 for (let index = 0; index < btnLike.length; index++) {
 
     btnLike[index].addEventListener('click', function (event) {
-        const resp = connectToApi(btnLike[index].name, btnLike[index].id)
-        event = btnLike[index].textContent++
-        btnLike[index].disabled = true
-        btnDislike[index].disabled = true
+        const imdbId = btnLike[index].name
+        const statement = btnLike[index].id
+
+
+        const url = `https://localhost:44313/api/${imdbId}/${statement}`
+        fetch(url).then(function (response) {
+            return response.json();
+        }).then(function (json) {
+            event = btnLike[index].textContent++
+            btnLike[index].disabled = true
+            btnDislike[index].disabled = true
+            console.log(json);
+        }).catch(function (err) {
+            console.log('Fetch problem: ' + err.message);
+        });
+
+
+
+
+
+
+        //event = btnLike[index].textContent++
+        //btnLike[index].disabled = true
+        //btnDislike[index].disabled = true
     })
 }
+
 
 for (let index = 0; index < btnDislike.length; index++) {
 
     btnDislike[index].addEventListener('click', function (event) {
-        connectToApi(btnDislike[index].name, btnDislike[index].id)
+        const imdbId = btnLike[index].name
+        const statement = btnLike[index].id
+
+
+
+        const url = `https://localhost:44313/api/${imdbId}/${statement}`
+        fetch(url).then(function (response) {
+            return response.json();
+        }).then(function (json) {
         event = btnDislike[index].textContent++
         btnLike[index].disabled = true
         btnDislike[index].disabled = true       
+  
+            console.log(json);
+        }).catch(function (err) {
+            console.log('Fetch problem: ' + err.message);
+        });
     })
 }
 
-function connectToApi(imdbId, statement) { 
+//function connectToApi(imdbId, statement) { 
 
-    const url = `https://localhost:44313/api/${imdbId}/${statement}`
-    fetch(url, {
-        mode: 'no-cors'
-    })
-        .then(response => {
-            return response.json()})
-        .then(data => {
-            console.log(data)
-        })
-        .catch(err => {
-            window.alert('Something went wrong. Like or dislike did not registered')
-            return err
-        })
-}
+//    const url = `https://localhost:44313/api/${imdbId}/${statement}`
+//     fetch(url).then(function (response) {
+//        return response.json();
+//    }).then(function (json) {
+//        console.log(json);
+//    }).catch(function (err) {
+//        console.log('Fetch problem: ' + err.message);
+//    });
+//}
