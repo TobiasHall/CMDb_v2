@@ -14,6 +14,7 @@ namespace CMDb.Data
     public class CmdbRepo : ICmdb
     {
         private string baseUrl;
+        private string baseUrl2;
         private string rating;
         private string popularity;
         private IApiClient apiClient;
@@ -22,6 +23,7 @@ namespace CMDb.Data
         public CmdbRepo(IConfiguration configuration, IApiClient apiClient)
         {
             baseUrl = configuration.GetValue<string>("CMDbApi:BaseUrl");
+            baseUrl2 = configuration.GetValue<string>("CMDbApi:BaseUrl2");
             rating = configuration.GetValue<string>("CMDbApi:ToplistByRating");
             popularity = configuration.GetValue<string>("CMDbApi:ToplistByPopularity");
             this.apiClient = apiClient;

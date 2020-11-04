@@ -16,7 +16,7 @@
                     const error = document.createElement('a')
                     error.textContent = `Something went wrong, error code:${response.status}`
                     content.appendChild(error)
-                    return;
+                    return
                 }
                 response.json()
                     .then(function (data) {
@@ -32,9 +32,9 @@
                     });
             })
             .catch(function (err) {
-                console.log('Fetch Error :-S', err);
+                window.alert('Fetch problem: ' + err)
             });
-    }, 500);
+    }, 200);
 }
 
 
