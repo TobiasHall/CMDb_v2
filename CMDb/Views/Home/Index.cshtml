@@ -1,6 +1,12 @@
 ﻿@model MovieViewModel
 @section scripts{    
     <script src="~/js/togglePlot.js"></script>
+    <script>
+        const homeLink = document.querySelector('#homeLink')
+        const movieLink = document.querySelector('#movieLink')
+        homeLink.classList.add('active')
+        movieLink.classList.remove('active')
+    </script>
 }
 
 <section class="hero-area" id="home">

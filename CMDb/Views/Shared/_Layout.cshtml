@@ -47,8 +47,8 @@
                     <div class="responsive-menu"></div>
                     <div class="mainmenu">
                         <ul id="primary-menu">
-                            <li >@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Movie", "Index", "Movie")</li>
+                            <li><a asp-action="Index" asp-controller="Home" id="homeLink">Home</a></li>
+                            <li><a asp-action="Index" asp-controller="Movie" id="movieLink">Movie</a></li>
                         </ul>
                     </div>
                 </div>

@@ -30,7 +30,7 @@ namespace CMDb.Mock
 
         public async Task<IEnumerable<CmdbMovieDto>> GetToplistByPopularitAndCount(int count)
         {
-            string testFile = "toplist.json";
+            string testFile = "moviesPopularity.json";
             var result = FileHandler.GetTestData<IEnumerable<CmdbMovieDto>>(basePath + testFile);
             await Task.Delay(0);
             return result;
