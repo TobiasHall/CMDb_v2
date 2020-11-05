@@ -8,8 +8,6 @@ namespace CMDb.Models.ViewModels
 {
     public class DetailPageViewModel
     {
-        public string Poster { get; set; }
-        public string Title { get; set; }
         public string Plot { get; set; }
         public string Actors { get; set; }
         public string Genre { get; set; }
@@ -19,10 +17,12 @@ namespace CMDb.Models.ViewModels
         public string Released { get; set; }
         public string Language { get; set; }
         public string ImdbId { get; set; }
+        public IEnumerable<OmdbMovieRatingDto> Ratings { get; set; }
+        public string Title { get; set; }
+        public string Poster { get; set; }
         public int NumberOfLikes { get; set; }
         public int NumberOfDislikes { get; set; }
         public string Year { get; set; }
-        public IEnumerable<OmdbMovieRatingDto> Ratings { get; set; }
 
 
         public DetailPageViewModel(MovieDetailDto movieDetailDto)

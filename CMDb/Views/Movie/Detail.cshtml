@@ -16,16 +16,49 @@
     <div class="container">
         <div class="transformers-box">
             <div class="row flexbox-center">
-                <div class="col-lg-5 text-lg-left text-center">
+                <div class="col-lg-4 text-lg-left text-center">
                     <div class="transformers-content">
-                        <img src="@Model.Poster" alt="about" onerror="this.src='/img/image-not-found.jpg'"/>
+                        <img src="@Model.Poster" alt="about" onerror="this.src='/img/image-not-found.jpg'" />
+                        <br />
+                        <div class="likeDisLikeButtons">
+                            <h4>CMDb rating:</h4>
+                            <button id="like" name="@Model.ImdbId" class="icofont icofont-thumbs-up">@Html.DisplayFor(item => @Model.NumberOfLikes)</button>
+                            <button id="dislike" name="@Model.ImdbId" class="icofont icofont-thumbs-down">@Html.DisplayFor(item => @Model.NumberOfDislikes)</button>
+                            <br />
+                        </div>
+                        <div>
+                            @foreach (var rating in Model.Ratings)
+                            {
+                                <h6>@rating.Source</h6>
+                                <p>@rating.Value</p>
+                            }
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-7">
                     <div class="transformers-content">
                         <h2>@Model.Title</h2>
                         <ul>
-                            <li>
+
+                            @foreach (var prop in Model.GetType().GetProperties())
+                            {
+                                if (prop.Name == "ImdbId")
+                                {
+                                    break;
+                                }
+                                
+                                <li>
+                                    <div class="transformers-left">
+                                        @prop.Name                                   
+                                    </div>
+                                    <div class="transformers-right">
+                                        @prop.GetValue(Model, null)
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+
+                            @*<li>
                                 <div class="transformers-left">
                                     Plot:
                                 </div>
@@ -89,12 +122,8 @@
                                     @Model.Language
                                 </div>
                             </li>
-                        </ul>
-                        <div class="likeDisLikeButtons">
-                            <h4>CMDb rating:</h4>
-                            <button id="like" name="@Model.ImdbId" class="icofont icofont-thumbs-up">@Html.DisplayFor(item => @Model.NumberOfLikes)</button>
-                            <button id="dislike" name="@Model.ImdbId" class="icofont icofont-thumbs-down">@Html.DisplayFor(item => @Model.NumberOfDislikes)</button>
-                        </div>
+                        </ul>*@
+                        
                     </div>
                 </div>
             </div>            
