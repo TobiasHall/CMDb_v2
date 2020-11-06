@@ -16,9 +16,10 @@ for (let index = 0; index < btnLike.length; index++) {
                 return
             }
             response.json()
-                .then(function (data) {
-                    btnLike[index].textContent++
+                .then(function (data) {                   
+                    btnLike[index].textContent = data.numberOfLikes
                     btnLike[index].disabled = true
+                    btnDislike[index].textContent = data.numberOfDislikes
                     btnDislike[index].disabled = true
                 })
                 .catch(function (err) {
@@ -42,8 +43,9 @@ for (let index = 0; index < btnDislike.length; index++) {
             }
             response.json()
                 .then(function (data) {
-                    btnDislike[index].textContent++
+                    btnLike[index].textContent = data.numberOfLikes
                     btnLike[index].disabled = true
+                    btnDislike[index].textContent = data.numberOfDislikes
                     btnDislike[index].disabled = true
                 })
                 .catch(function (err) {

@@ -12,38 +12,38 @@
 <section class="hero-area" id="home">
     <div class="container">
         <div class="hero-area-slider">
-            @for (int i = 0; i < 3; i++)
+            @for (int i = 0; i < Model.TopThreeMovies.Count; i++)
             {
                 <div class="row hero-area-slide">
                     <div class="col-lg-6 col-md-5">
                         <div class="hero-area-content">
-                            <a asp-action="Detail" asp-controller="Movie" asp-route-id="@Model.Movies[i].ImdbId">
-                                <img src="@Html.DisplayFor(model => model.Movies[i].Poster)" alt="about" onerror="this.src='/img/image-not-found.jpg'" />
+                            <a asp-action="Detail" asp-controller="Movie" asp-route-id="@Model.TopThreeMovies[i].ImdbId">
+                                <img src="@Html.DisplayFor(model => model.TopThreeMovies[i].Poster)" alt="about" onerror="this.src='/img/image-not-found.jpg'" />
                                 <h2 class="news-date">Top 3 on<br /> CMDb</h2>
                             </a>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-7">
                         <div class="hero-area-content pr-50">
-                            <h2>@Html.DisplayFor(model => model.Movies[i].Title)</h2>
+                            <h2>@Html.DisplayFor(model => model.TopThreeMovies[i].Title)</h2>
                             <div class="review">
-                                @foreach (var rating in Model.Movies[i].Ratings)
+                                @foreach (var rating in Model.TopThreeMovies[i].Ratings)
                                 {
                                     <h6>@Html.DisplayFor(item => rating.Source)</h6>
                                     <p>@Html.DisplayFor(item => rating.Value)</p>
                                 }
                                 <h6>CMDb rating</h6>
                                 <div class="likeDisLikeButtons">
-                                    <button id="like" name="@Model.Movies[i].ImdbId" class="icofont icofont-thumbs-up">@Html.DisplayFor(item => item.Movies[i].NumberOfLikes)</button>
-                                    <button id="dislike" name="@Model.Movies[i].ImdbId" class="icofont icofont-thumbs-down">@Html.DisplayFor(item => item.Movies[i].NumberOfDislikes)</button>
+                                    <button id="like" name="@Model.TopThreeMovies[i].ImdbId" class="icofont icofont-thumbs-up">@Html.DisplayFor(item => item.TopThreeMovies[i].NumberOfLikes)</button>
+                                    <button id="dislike" name="@Model.TopThreeMovies[i].ImdbId" class="icofont icofont-thumbs-down">@Html.DisplayFor(item => item.TopThreeMovies[i].NumberOfDislikes)</button>
                                 </div>                                
                             </div>
                             <div class="plot-div">
-                                @Html.DisplayFor(model => model.Movies[i].Plot)
+                                @Html.DisplayFor(model => model.TopThreeMovies[i].Plot)
                             </div>
                             <a class="more" href="#">Read more</a>
                             <div class="slide-trailor">
-                                <button id="go-to-btn">@Html.ActionLink("Go to movie", "Detail", "Movie", new {id = Model.Movies[i].ImdbId })</button>
+                                <button id="go-to-btn">@Html.ActionLink("Go to movie", "Detail", "Movie", new {id = Model.TopThreeMovies[i].ImdbId })</button>
                             </div>
                         </div>
                     </div>
@@ -55,11 +55,11 @@
                 <div class="row hero-area-slide">
                     <div class="col-lg-6">
                         <div class="hero-area-content">
-                            <img src="@Html.DisplayFor(model => model.Movies[2].Poster)" alt="about" onerror="this.src='/img/image-not-found.jpg'"/>
+                            <img src="@Html.DisplayFor(model => model.TopThreeMovies[2].Poster)" alt="about" onerror="this.src='/img/image-not-found.jpg'"/>
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <p>@Html.DisplayFor(model => model.Movies[2].Plot)</p>
+                        <p>@Html.DisplayFor(model => model.TopThreeMovies[2].Plot)</p>
                     </div>
                 </div>
             </div>
@@ -67,11 +67,11 @@
                 <div class="row hero-area-slide">
                     <div class="col-lg-6">
                         <div class="hero-area-content">
-                            <img src="@Html.DisplayFor(model => model.Movies[1].Poster)" alt="about" onerror="this.src='/img/image-not-found.jpg'"/>
+                            <img src="@Html.DisplayFor(model => model.TopThreeMovies[1].Poster)" alt="about" onerror="this.src='/img/image-not-found.jpg'"/>
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <p>@Html.DisplayFor(model => model.Movies[1].Plot)</p>
+                        <p>@Html.DisplayFor(model => model.TopThreeMovies[1].Plot)</p>
                     </div>
                 </div>
             </div>
@@ -91,30 +91,27 @@
             <div class="row">
                 <div class="col-lg-9">
                     <div class="row portfolio-item">
-                        @for (int i = 0; i < Model.Movies.Count; i++)
+                        @for (int i = 0; i < Model.FourToRest.Count; i++)
                         {
-                            if (i > 2)
-                            {
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="single-portfolio">
-                                        <div class="single-portfolio-img">
-                                            <a asp-action="Detail" asp-controller="Movie" asp-route-id="@Model.Movies[i].ImdbId">
-                                                <img src="@Html.DisplayFor(model => Model.Movies[i].Poster)" alt="about" onerror="this.src='/img/image-not-found.jpg'" />
-                                            </a>
-                                        </div>
-                                        <div class="portfolio-content">
-                                            <h4><a asp-action="Detail" asp-controller="Movie" asp-route-id="@Model.Movies[i].ImdbId">@Model.Movies[i].Title</a></h4>
-                                            <div class="review">
-                                                <h6>CMDb rating</h6>
-                                                <div class="likeDisLikeButtons">
-                                                    <button id="like" name="@Model.Movies[i].ImdbId" class="icofont icofont-thumbs-up">@Html.DisplayFor(item => Model.Movies[i].NumberOfLikes)</button>
-                                                    <button id="dislike" name="@Model.Movies[i].ImdbId" class="icofont icofont-thumbs-down">@Html.DisplayFor(item => Model.Movies[i].NumberOfDislikes)</button>
-                                                </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="single-portfolio">
+                                    <div class="single-portfolio-img">
+                                        <a asp-action="Detail" asp-controller="Movie" asp-route-id="@Model.FourToRest[i].ImdbId">
+                                            <img src="@Html.DisplayFor(model => Model.FourToRest[i].Poster)" alt="about" onerror="this.src='/img/image-not-found.jpg'" />
+                                        </a>
+                                    </div>
+                                    <div class="portfolio-content">
+                                        <h4><a asp-action="Detail" asp-controller="Movie" asp-route-id="@Model.FourToRest[i].ImdbId">@Model.FourToRest[i].Title</a></h4>
+                                        <div class="review">
+                                            <h6>CMDb rating</h6>
+                                            <div class="likeDisLikeButtons">
+                                                <button id="like" name="@Model.FourToRest[i].ImdbId" class="icofont icofont-thumbs-up">@Html.DisplayFor(item => Model.FourToRest[i].NumberOfLikes)</button>
+                                                <button id="dislike" name="@Model.FourToRest[i].ImdbId" class="icofont icofont-thumbs-down">@Html.DisplayFor(item => Model.FourToRest[i].NumberOfDislikes)</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            }
+                            </div>                            
                         }
                     </div>
                 </div>

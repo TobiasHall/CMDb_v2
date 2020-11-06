@@ -34,15 +34,19 @@ namespace CMDb.Data
 
         public async Task<MovieViewModel> GetMovieViewModel(IEnumerable<CmdbMovieDto> cmdbDtoMovies)
         {
+            var tasks = new List<Task>();
             List<MovieDetailDto> movies = new List<MovieDetailDto>();
+
             foreach (var movie in cmdbDtoMovies)
             {
                 string movieId = $"?i={movie.ImdbId}";
-                var result = await apiClient.GetAsync<MovieDetailDto>($"{baseUrl}{movieId}{key}");
-                result.NumberOfLikes = movie.NumberOfLikes;
-                result.NumberOfDislikes = movie.NumberOfDislikes;
-                movies.Add(result);
+                var cmdbMovieDto = apiClient.GetAsync<MovieDetailDto>($"{baseUrl}{movieId}{key}");
+                cmdbMovieDto.Result.NumberOfLikes = movie.NumberOfLikes;
+                cmdbMovieDto.Result.NumberOfDislikes = movie.NumberOfDislikes;                
+                tasks.Add(cmdbMovieDto);
+                movies.Add(cmdbMovieDto.Result);
             }
+            await Task.WhenAll(tasks);
             return new MovieViewModel(movies);
         }
 
