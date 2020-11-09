@@ -16,6 +16,13 @@
  * PRELOADER CSS
 **/
 
+
+#filterOnYear, #filterOnLikes, #filterOnDislikes {
+    display: none;
+}
+#filterOnTitle {
+    display: contents;
+}
 /*----------------------------------
 --------- THEME DEFAULT CSS --------
 ----------------------------------*/
@@ -24,8 +31,8 @@ body {
     line-height: 24px;
     font-size: 14px;
     color: #b6b7b9;
-	background: #13151f;
-	font-family: 'Poppins', sans-serif;
+    background: #13151f;
+    font-family: 'Poppins', sans-serif;
     font-weight: 400;
     position: relative;
 }

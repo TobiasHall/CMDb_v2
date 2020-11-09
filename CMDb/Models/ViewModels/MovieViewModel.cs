@@ -15,10 +15,16 @@ namespace CMDb.Models.ViewModels
         public List<MovieDetailDto> TopThreeMovies { get; set; }
         public List<MovieDetailDto> FourToRest { get; set; }
 
+        public List<MovieDetailDto> MoviesOrderByYear { get; set; }
+        public List<MovieDetailDto> MoviesOrderByTitle { get; set; }
+        public List<MovieDetailDto> MoviesOrderByLikes { get; set; }
+        public List<MovieDetailDto> MoviesOrderByDislikes { get; set; }
+
         public MovieViewModel(List<MovieDetailDto> movies)
         {
             this.Movies = movies;
             SetHomePageLists(movies);
+            OrderListBy(movies);
             
 
         }
@@ -38,6 +44,13 @@ namespace CMDb.Models.ViewModels
                     this.FourToRest.Add(movies[i]);
                 }
             }
+        }
+        private void OrderListBy(List<MovieDetailDto> movies) 
+        {
+            MoviesOrderByYear = movies.OrderBy(o => o.Year).ToList();
+            MoviesOrderByTitle = movies.OrderBy(o => o.Title).ToList();
+            MoviesOrderByLikes = movies.OrderBy(o => o.NumberOfLikes).Reverse().ToList();
+            MoviesOrderByDislikes = movies.OrderBy(o => o.NumberOfDislikes).Reverse().ToList();
         }
     }
 }

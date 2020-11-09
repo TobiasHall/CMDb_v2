@@ -1,13 +1,12 @@
 ﻿@model MovieViewModel
 @section scripts{
     <script src="~/js/togglePlot.js"></script>
+    <script src="~/js/filter.js"></script>
     <script>
         const homeLink = document.querySelector('#homeLink')
         const movieLink = document.querySelector('#movieLink')
-
-        movieLink.classList.add('active')
-        homeLink.classList.remove('active')
-
+        homeLink.classList.add('active')
+        movieLink.classList.remove('active')
     </script>
 }
 <section class="breadcrumb-area">
@@ -24,38 +23,125 @@
 
 <section class="portfolio-area pt-60">
     <div class="container">
-        <div class="col-lg-6 text-center text-lg-left">
-            <div class="section-title">
-                <h1><i class="icofont icofont-movie"></i> Populary movies at CMDb</h1>
+        <div class="row flexbox-center">
+            <div class="col-lg-6 text-center text-lg-left">
+                <div class="section-title">
+                    <h1><i class="icofont icofont-movie"></i> Populary movies</h1>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="portfolio-menu">
+                    <ul>
+                        <li class="filterRow">Title</li>
+                        <li class="filterRow">Year</li>
+                        <li class="filterRow">Likes</li>
+                        <li class="filterRow">Dislikes</li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <br />
         <hr />
         <div class="row">
             <div class="col-lg-9">
                 <div class="row portfolio-item">
-                    @for (int i = 0; i < Model.Movies.Count; i++)
-                    {
-                        <div class="col-md-4 col-sm-6">
-                            <div class="single-portfolio">
-                                <div class="single-portfolio-img">
-                                    <a asp-action="Detail" asp-controller="Movie" asp-route-id="@Model.Movies[i].ImdbId">
-                                        <img src="@Html.DisplayFor(model => Model.Movies[i].Poster)" alt="about" onerror="this.src='/img/image-not-found.jpg'" />
-                                    </a>
-                                </div>
-                                <div class="portfolio-content">
-                                    <h4>@Html.ActionLink(Model.Movies[i].Title, "Detail", "Movie", new { id = Model.Movies[i].ImdbId })</h4>
-                                    <div class="review">
-                                        <h6>CMDb rating</h6>
-                                        <div class="likeDisLikeButtons">
-                                            <button id="like" name="@Model.Movies[i].ImdbId" class="icofont icofont-thumbs-up">@Html.DisplayFor(item => Model.Movies[i].NumberOfLikes)</button>
-                                            <button id="dislike" name="@Model.Movies[i].ImdbId" class="icofont icofont-thumbs-down">@Html.DisplayFor(item => Model.Movies[i].NumberOfDislikes)</button>
+                    <div id="filterOnTitle">
+                        @for (int i = 0; i < Model.MoviesOrderByTitle.Count; i++)
+                        {
+                            <div class="col-md-4 col-sm-6">
+                                <div class="single-portfolio">
+                                    <div class="single-portfolio-img">
+                                        <div class="movieFilterPoster">
+                                            <a asp-action="Detail" asp-controller="Movie" asp-route-id="@Model.MoviesOrderByTitle[i].ImdbId">
+                                                <img src="@Html.DisplayFor(model => Model.MoviesOrderByTitle[i].Poster)" alt="about" onerror="this.src='/img/image-not-found.jpg'" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-content">
+                                        <h4>@Html.ActionLink(Model.MoviesOrderByTitle[i].Title, "Detail", "Movie", new { id = Model.MoviesOrderByTitle[i].ImdbId })</h4>
+                                        <div class="review">
+                                            <h6>CMDb rating</h6>
+                                            <div class="likeDisLikeButtons">
+                                                <button id="like" name="@Model.MoviesOrderByTitle[i].ImdbId" class="icofont icofont-thumbs-up">@Html.DisplayFor(item => Model.MoviesOrderByTitle[i].NumberOfLikes)</button>
+                                                <button id="dislike" name="@Model.MoviesOrderByTitle[i].ImdbId" class="icofont icofont-thumbs-down">@Html.DisplayFor(item => Model.MoviesOrderByTitle[i].NumberOfDislikes)</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    }
+                        }
+                    </div>
+                    <div id="filterOnYear">
+                        @foreach (var movie in Model.MoviesOrderByYear)
+                        {
+                            <div class="col-md-4 col-sm-6">
+                                <div class="single-portfolio">
+                                    <div class="single-portfolio-img">
+                                        <a asp-action="Detail" asp-controller="Movie" asp-route-id="@movie.ImdbId">
+                                            <img src="@Html.DisplayFor(model => movie.Poster)" alt="about" onerror="this.src='/img/image-not-found.jpg'" />
+                                        </a>
+                                    </div>
+                                    <div class="portfolio-content">
+                                        <h4>@Html.ActionLink(movie.Title, "Detail", "Movie", new { id = movie.ImdbId })</h4>
+                                        <div class="review">
+                                            <h6>CMDb rating</h6>
+                                            <div class="likeDisLikeButtons">
+                                                <button id="like" name="@movie.ImdbId" class="icofont icofont-thumbs-up">@Html.DisplayFor(item => movie.NumberOfLikes)</button>
+                                                <button id="dislike" name="@movie.ImdbId" class="icofont icofont-thumbs-down">@Html.DisplayFor(item => movie.NumberOfDislikes)</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div id="filterOnLikes">
+                        @foreach (var movie in Model.MoviesOrderByLikes)
+                        {
+                            <div class="col-md-4 col-sm-6">
+                                <div class="single-portfolio">
+                                    <div class="single-portfolio-img">
+                                        <a asp-action="Detail" asp-controller="Movie" asp-route-id="@movie.ImdbId">
+                                            <img src="@Html.DisplayFor(model => movie.Poster)" alt="about" onerror="this.src='/img/image-not-found.jpg'" />
+                                        </a>
+                                    </div>
+                                    <div class="portfolio-content">
+                                        <h4>@Html.ActionLink(movie.Title, "Detail", "Movie", new { id = movie.ImdbId })</h4>
+                                        <div class="review">
+                                            <h6>CMDb rating</h6>
+                                            <div class="likeDisLikeButtons">
+                                                <button id="like" name="@movie.ImdbId" class="icofont icofont-thumbs-up">@Html.DisplayFor(item => movie.NumberOfLikes)</button>
+                                                <button id="dislike" name="@movie.ImdbId" class="icofont icofont-thumbs-down">@Html.DisplayFor(item => movie.NumberOfDislikes)</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div id="filterOnDislikes">
+                        @foreach (var movie in Model.MoviesOrderByDislikes)
+                        {
+                            <div class="col-md-4 col-sm-6">
+                                <div class="single-portfolio">
+                                    <div class="single-portfolio-img">
+                                        <a asp-action="Detail" asp-controller="Movie" asp-route-id="@movie.ImdbId">
+                                            <img src="@Html.DisplayFor(model => movie.Poster)" alt="about" onerror="this.src='/img/image-not-found.jpg'" />
+                                        </a>
+                                    </div>
+                                    <div class="portfolio-content">
+                                        <h4>@Html.ActionLink(movie.Title, "Detail", "Movie", new { id = movie.ImdbId })</h4>
+                                        <div class="review">
+                                            <h6>CMDb rating</h6>
+                                            <div class="likeDisLikeButtons">
+                                                <button id="like" name="@movie.ImdbId" class="icofont icofont-thumbs-up">@Html.DisplayFor(item => movie.NumberOfLikes)</button>
+                                                <button id="dislike" name="@movie.ImdbId" class="icofont icofont-thumbs-down">@Html.DisplayFor(item => movie.NumberOfDislikes)</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
         </div>
